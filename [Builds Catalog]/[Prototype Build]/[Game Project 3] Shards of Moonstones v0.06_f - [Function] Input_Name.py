@@ -62,13 +62,8 @@ def Quit_Game():
     quit()
 
 
-class Player:
-    def __init__(self, name):
-        self.name = name
 
-
-
-# Gameplay    
+    
 def Title_Screen():
     gameDisplay.blit(Title_Screen_Background, (0,0))
     Text_Display("Shards of Moostones", display_width/2, display_height*0.25, Text_Title_Screen)
@@ -94,72 +89,56 @@ def Game_Intro():
             if event.type == pygame.QUIT:
                 exit()
 # Setup
-        pygame.display.update()
         gameDisplay.blit(Game_ui_Screen, (0,0))
         Game_Text_Event()
+        pygame.display.update()
         global PlayerIG
-        print(GameStateIG.Event)
 
     # Game Intro 1 :
         # Player Name
-        if GameStateIG.Event[1] == False:
+        if GameStateIG.Text_Order == 1:
             GameStateIG.Text_Line_Right[1] = "What is your name?"
-            GameStateIG.Text_Line_Right[2] = "-> (Enter your Name)"
+            GameStateIG.Text_Line_Right[2] = "->"
             GameStateIG.Event[1] = True
 
         if GameStateIG.Event[1] == True:
-            pygame.draw.line(gameDisplay, black, (0, 475),     (350, 475),     5)
-            Text_Input(events)
-            print("lol")
-
-            if GameStateIG.Text_Line_Left[0] != "":
-                PlayerIG = Player(GameStateIG.Text_Line_Left[0])
-                GameStateIG.Event[1] = False
-                GameStateIG.Event[2] = True
-
-            elif GameStateIG.Text_Order == 2 :
-                GameStateIG.Text_Line_Right[2] = "That doesn't seem like a real name!"
-                GameStateIG.Text_Line_Right[3] = "-> (Enter your Name)"
-
-            elif GameStateIG.Text_Order == 3 :
-                GameStateIG.Text_Line_Right[3] = "Please, tell me your name!"
-                GameStateIG.Text_Line_Right[4] = "-> (Enter your Name)"
-                
-            elif GameStateIG.Text_Order == 4 :
-                GameStateIG.Text_Order = 3
+            Input_Name()
 
 
-        if GameStateIG.Event[2] == True:
-            GameStateIG.Text_Line_Right[2] = ("I see... Then, %s... " % PlayerIG.name)
-            GameStateIG.Text_Line_Right[3] = "-> (Press Enter)"
-            GameStateIG.Text_Line_Right[4] = ""
+
+
+
+
+
+
+
+
+
+# Game Event
+    def Input_Name():
+    # Text Input
+    if GameStateIG.textinput.update(events):
+        GameStateIG.Text_Line[0] = GameStateIG.textinput.get_text()
+        text_line_order()
             
+        #Reset Text Input
+        GameStateIG.textinput = pygame_textinput.TextInput()
+            
+    # Display
+    gameDisplay.blit(GameStateIG.textinput.get_surface(), (155, 572.5))
+    pygame.display.update()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    # Game Tools Development   
+    # Game Tools Development
+    
 # Main Tools
 class GameState:
     def __init__(self, name):
-        self.textinput = pygame_textinput.TextInput()
-        self.Text_Line_Left     = ["", "", "", "", "", "", "", ""]
-        self.Text_Line_Right    = ["", "", "", "", "", "", "", ""]
+        self.Text_Line_Left     = ["", "1", "2", "4", "5", "6", "7", "8"]
+        self.Text_Line_Right    = ["", "1", "3", "4", "5", "6", "7", "8"]
         self.Text_Order         = 1
 
-        self.Event = [False,False,False,False,False,False]
+        GameStateIG.Event = [False,False,False,False,False,False]
 
 GameStateIG = GameState("GameState")
 
@@ -192,8 +171,6 @@ def Button(msg,x,y,w,h,ic,ac,Text_Type,action=None):
     textRect.center = ((x+(w/2)), (y+(h/2)))
     gameDisplay.blit(textSurf, textRect)
 
-    
-
 def Game_Text_Event():
 # Left
     # Character Name
@@ -220,24 +197,6 @@ def Game_Text_Event():
     Text_ui(GameStateIG.Text_Line_Right[6], 460, 550)
     Text_ui(GameStateIG.Text_Line_Right[7], 460, 570)
     
-
-
-
-def Text_Input(events):
-    # Text Input
-    if GameStateIG.textinput.update(events):
-        GameStateIG.Text_Line_Left[0] = GameStateIG.textinput.get_text()
-        GameStateIG.Text_Order += 1
-            
-        #Reset Text Input
-        GameStateIG.textinput = pygame_textinput.TextInput()
-
-    if GameStateIG.Text_Order > 7:
-            GameStateIG.Text_Order  = 1
-            
-    # Display
-    gameDisplay.blit(GameStateIG.textinput.get_surface(), (10, 450))
-
 
 
 

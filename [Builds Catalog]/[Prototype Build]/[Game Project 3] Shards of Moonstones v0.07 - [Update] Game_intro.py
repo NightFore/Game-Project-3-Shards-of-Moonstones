@@ -62,13 +62,8 @@ def Quit_Game():
     quit()
 
 
-class Player:
-    def __init__(self, name):
-        self.name = name
 
-
-
-# Gameplay    
+    
 def Title_Screen():
     gameDisplay.blit(Title_Screen_Background, (0,0))
     Text_Display("Shards of Moostones", display_width/2, display_height*0.25, Text_Title_Screen)
@@ -98,11 +93,10 @@ def Game_Intro():
         gameDisplay.blit(Game_ui_Screen, (0,0))
         Game_Text_Event()
         global PlayerIG
-        print(GameStateIG.Event)
 
     # Game Intro 1 :
         # Player Name
-        if GameStateIG.Event[1] == False:
+        if GameStateIG.Text_Order == 1:
             GameStateIG.Text_Line_Right[1] = "What is your name?"
             GameStateIG.Text_Line_Right[2] = "-> (Enter your Name)"
             GameStateIG.Event[1] = True
@@ -110,29 +104,10 @@ def Game_Intro():
         if GameStateIG.Event[1] == True:
             pygame.draw.line(gameDisplay, black, (0, 475),     (350, 475),     5)
             Text_Input(events)
-            print("lol")
 
-            if GameStateIG.Text_Line_Left[0] != "":
-                PlayerIG = Player(GameStateIG.Text_Line_Left[0])
-                GameStateIG.Event[1] = False
-                GameStateIG.Event[2] = True
-
-            elif GameStateIG.Text_Order == 2 :
-                GameStateIG.Text_Line_Right[2] = "That doesn't seem like a real name!"
-                GameStateIG.Text_Line_Right[3] = "-> (Enter your Name)"
-
-            elif GameStateIG.Text_Order == 3 :
-                GameStateIG.Text_Line_Right[3] = "Please, tell me your name!"
-                GameStateIG.Text_Line_Right[4] = "-> (Enter your Name)"
-                
-            elif GameStateIG.Text_Order == 4 :
-                GameStateIG.Text_Order = 3
-
-
-        if GameStateIG.Event[2] == True:
-            GameStateIG.Text_Line_Right[2] = ("I see... Then, %s... " % PlayerIG.name)
-            GameStateIG.Text_Line_Right[3] = "-> (Press Enter)"
-            GameStateIG.Text_Line_Right[4] = ""
+        if GameStateIG.Text_Line_Left[0] != "":
+            PlayerIG = Player(GameStateIG.Text_Line_Left[0])
+            GameStateIG.Event[1] = False
             
 
 
@@ -155,8 +130,8 @@ def Game_Intro():
 class GameState:
     def __init__(self, name):
         self.textinput = pygame_textinput.TextInput()
-        self.Text_Line_Left     = ["", "", "", "", "", "", "", ""]
-        self.Text_Line_Right    = ["", "", "", "", "", "", "", ""]
+        self.Text_Line_Left     = ["", "1", "2", "4", "5", "6", "7", "8"]
+        self.Text_Line_Right    = ["", "1", "3", "4", "5", "6", "7", "8"]
         self.Text_Order         = 1
 
         self.Event = [False,False,False,False,False,False]

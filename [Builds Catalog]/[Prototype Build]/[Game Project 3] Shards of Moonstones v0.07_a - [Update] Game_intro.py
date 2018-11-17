@@ -97,8 +97,8 @@ def Game_Intro():
         pygame.display.update()
         gameDisplay.blit(Game_ui_Screen, (0,0))
         Game_Text_Event()
+        print(GameStateIG.Text_Order)
         global PlayerIG
-        print(GameStateIG.Event)
 
     # Game Intro 1 :
         # Player Name
@@ -110,7 +110,6 @@ def Game_Intro():
         if GameStateIG.Event[1] == True:
             pygame.draw.line(gameDisplay, black, (0, 475),     (350, 475),     5)
             Text_Input(events)
-            print("lol")
 
             if GameStateIG.Text_Line_Left[0] != "":
                 PlayerIG = Player(GameStateIG.Text_Line_Left[0])
@@ -132,7 +131,6 @@ def Game_Intro():
         if GameStateIG.Event[2] == True:
             GameStateIG.Text_Line_Right[2] = ("I see... Then, %s... " % PlayerIG.name)
             GameStateIG.Text_Line_Right[3] = "-> (Press Enter)"
-            GameStateIG.Text_Line_Right[4] = ""
             
 
 
