@@ -52,7 +52,7 @@ def Title_Screen():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
-        # Button        # 200/400/600      - Box Width / 2     # Height            - Box Height /2      800/8 = 100      600 / 12 = 50
+                        # 200/400/600      - Box Width / 2     # Height            - Box Height /2      800/8 = 100      600 / 12 = 50
         Button("Start", display_width*0.25 - display_width/16, display_height*0.75 - display_height/24, display_width/8, display_height/12, green, red, Text_Title_Selection, Game_Intro)
         Button("Load",  display_width*0.50 - display_width/16, display_height*0.75 - display_height/24, display_width/8, display_height/12, green, red, Text_Title_Selection, Game_Load)
         Button("Exit",  display_width*0.75 - display_width/16, display_height*0.75 - display_height/24, display_width/8, display_height/12, green, red, Text_Title_Selection, Quit_Game)
@@ -86,6 +86,7 @@ def Text_Display(msg, x, y, Text_Type):
     textSurf, textRect = Text_Type(msg, font)
     textRect.center = (x, y)
     gameDisplay.blit(textSurf, textRect)
+    pygame.display.update()
 
     
 def Button(msg,x,y,w,h,ic,ac,Text_Type,action=None):
@@ -109,6 +110,7 @@ def Button(msg,x,y,w,h,ic,ac,Text_Type,action=None):
     textSurf, textRect = Text_Type(msg, font)
     textRect.center = ((x+(w/2)), (y+(h/2)))
     gameDisplay.blit(textSurf, textRect)
+    pygame.display.update()
 
 
 
