@@ -21,13 +21,10 @@ pygame.display.set_caption("Shards of Moonstones")
 clock = pygame.time.Clock()
 
     #Ressources
-font = pygame.font.SysFont(None, 25)
-
 black = (0,0,0)
 green = (0,180,80)
-red = (200,0,0)
-
 bright_green = (96,255,96)
+red = (200,0,0)
 bright_red = (255,96,96)
 game_ui_color = (245,218,168)
 text_ui_color = (104,187,230)
@@ -51,9 +48,9 @@ def Title_Screen():
                 pygame.quit()
                 quit()
                         # Width 50%     - Box Width / 2     # Height            - Box Height /2      800/8 = 100      600 / 12 = 50
-        Button("Start", display_width/2 - display_width/16, display_height*0.60 - display_height/24, display_width/8, display_height/12, green, red, Text_Title_Selection, Game_Intro)
-        Button("Load",  display_width/2 - display_width/16, display_height*0.75 - display_height/24, display_width/8, display_height/12, green, red, Text_Title_Selection, Game_Load)
-        Button("Exit",  display_width/2 - display_width/16, display_height*0.90 - display_height/24, display_width/8, display_height/12, green, red, Text_Title_Selection, Quit_Game)
+        Button("Start", display_width/2 - display_width/16, display_height*0.45 - display_height/24, display_width/8, display_height/12, green, red, Text_Title_Selection, Game_Intro)
+        Button("Load",  display_width/2 - display_width/16, display_height*0.60 - display_height/24, display_width/8, display_height/12, green, red, Text_Title_Selection, Game_Load)
+        Button("Exit",  display_width/2 - display_width/16, display_height*0.75 - display_height/24, display_width/8, display_height/12, green, red, Text_Title_Selection, Quit_Game)
 
         pygame.display.update()
 
@@ -79,45 +76,13 @@ def Quit_Game():
 
 # Game Tools Development
 def Button(msg,x,y,w,h,ic,ac,Text_Type,action=None):
-    # msg : Message / ic : Inactive Color / ac : Active Color
-    mouse = pygame.mouse.get_pos()
-    click = pygame.mouse.get_pressed()
+    pass
 
-    # Button Box - Active Color
-    if x < mouse[0] < x+w and y < mouse[1] < y+h :
-        pygame.draw.rect(gameDisplay, ac,(x,y,w,h))
+def Text_Display():
+    pass
 
-        # Action
-        if click[0] ==1 and action !=None:
-            action()
-
-    # Button Box - Inactive Color
-    else:
-        pygame.draw.rect(gameDisplay, ic,(x,y,w,h))
-
-
-    textSurf, textRect = Text_Type(msg, font)
-    textRect.center = ((x+(w/2)), (y+(h/2)))
-
-    gameDisplay.blit(textSurf, textRect)
-    pygame.display.update()
-
-
-def Text_Display(msg, x, y, color):
-    Text_Screen = font.render(msg, True, color)
-    gameDisplay.blit(Text_Screen, x, y)
-
-def Text_Title_Selection(msg, font):
-    # Font / Size
-    font = pygame.font.SysFont(None, 30)
-
-    # Text, True, Color
-    textSurface = font.render(msg, True, (black))
-    return textSurface, textSurface.get_rect()
-
-
-
-
+def Text_Title_Selection():
+    pass
 
 # Game Build
 def Game_Intro():
