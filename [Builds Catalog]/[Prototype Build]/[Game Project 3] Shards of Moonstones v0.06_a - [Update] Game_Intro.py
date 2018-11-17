@@ -39,7 +39,7 @@ ground_color = (34,177,76)
 
     # Game Files
 Title_Screen_Background = pygame.image.load("Data\Background\Title_Screen_Background.png")
-Game_ui_Screen = pygame.image.load("Data\Game_ui\Game_ui_Screen_Cutscene.png")
+Game_ui_Display = pygame.image.load("Data\Game_ui\Game_ui_Display.png")
 
 
 
@@ -69,7 +69,7 @@ def Game_Intro():
             if event.type == pygame.QUIT:
                 exit()
 # Setup
-        gameDisplay.blit(Game_ui_Screen, (0,0))
+        gameDisplay.blit(Game_ui_Display, (0,0))
         pygame.display.update()
         global PlayerIG
 

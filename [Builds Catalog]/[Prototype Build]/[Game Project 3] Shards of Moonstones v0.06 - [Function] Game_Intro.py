@@ -39,7 +39,6 @@ ground_color = (34,177,76)
 
     # Game Files
 Title_Screen_Background = pygame.image.load("Data\Background\Title_Screen_Background.png")
-Game_ui_Screen = pygame.image.load("Data\Game_ui\Game_ui_Screen_Cutscene.png")
 
 
 
@@ -60,20 +59,7 @@ def Title_Screen():
 
         pygame.display.update()
 
- 
-def Game_Intro():
-    gameExit = False
-    while not gameExit:
-        events = pygame.event.get()
-        for event in events:
-            if event.type == pygame.QUIT:
-                exit()
-# Setup
-        gameDisplay.blit(Game_ui_Screen, (0,0))
-        pygame.display.update()
-        global PlayerIG
-
-        
+    
 def Game_Save():
     with open("savefile", "wb") as f:
         pickle.dump(PlayerIG, f)
@@ -137,5 +123,21 @@ def Text_Title_Selection(msg, font):
     font = pygame.font.SysFont(None, 30)
     textSurface = font.render(msg, True, (black))
     return textSurface, textSurface.get_rect()
+
+
+
+
+
+# Game Build
+def Game_Intro():
+    gameExit = False
+    while not gameExit:
+        events = pygame.event.get()
+        for event in events:
+            if event.type == pygame.QUIT:
+                exit()
+# Setup
+        global PlayerIG
+
         
 Title_Screen()
