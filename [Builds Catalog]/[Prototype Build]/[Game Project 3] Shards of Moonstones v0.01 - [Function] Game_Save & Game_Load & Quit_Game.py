@@ -1,20 +1,17 @@
+import sys
+import os
+import random
+import pickle
 import pygame
 import time
+import pygame_textinput
 
-
-# Game Settings
-    # Game Setup
+#Setup
 pygame.init()
-
-    # Game Size Screen
-gameDisplay = pygame.display.set_mode((display_width, display_height))
 display_width = 800
 display_height = 600
-
-    # Game Title
+gameDisplay = pygame.display.set_mode((display_width, display_height))
 pygame.display.set_caption("Shards of Moonstones")
-
-    # Game Clock
 clock = pygame.time.Clock()
 
 
@@ -34,23 +31,6 @@ sky_color = (153,217,234)
 ground_color = (34,177,76)
 
 
-Title_Screen_Background = pygame.image.load("Data\Background\Title_Screen_Background.png")
-
-
-
-# Game Core
-def Title_Screen():
-    gameDisplay.blit(Title_Screen_Background, (0,0))
-    gameExit = False
-    while not gameExit:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                quit()
-
-            pygame.display.update()
-
-    
 def Game_Save():
     with open("savefile", "wb") as f:
         pickle.dump(PlayerIG, f)
@@ -70,10 +50,4 @@ def Quit_Game():
     pygame.quit()
     quit()
 
-
-
-# Game Tools Development
-def Text_Display():
-    pass
-
-Title_Screen()
+    
