@@ -27,7 +27,7 @@ font = pygame.font.SysFont(None, 25)
 black = (0,0,0)
 green = (0,180,80)
 red = (200,0,0)
-Text_ui_Color = black
+Text_ui_Color = (104,187,230)
 
 bright_green = (96,255,96)
 bright_red = (255,96,96)
@@ -70,7 +70,6 @@ def Game_Intro():
                 exit()
 # Setup
         gameDisplay.blit(Game_ui_Screen, (0,0))
-        Game_Text_Event()
         pygame.display.update()
         global PlayerIG
 
@@ -99,10 +98,9 @@ def Quit_Game():
 # Main Tools
 class GameState:
     def __init__(self, name):
-        self.Text_Line_Left     = ["", "1", "2", "4", "5", "6", "7", "8"]
-        self.Text_Line_Right    = ["", "1", "3", "4", "5", "6", "7", "8"]
+        self.Text_Line_Left     = ["", "", "", "", "", "", "", "", ""]
+        self.Text_Line_Right    = ["", "", "", "", "", "", "", "", ""]
 
-GameStateIG = GameState("GameState")
 
         
 def Text_Display(msg, x, y, Text_Type):
@@ -134,30 +132,14 @@ def Button(msg,x,y,w,h,ic,ac,Text_Type,action=None):
     gameDisplay.blit(textSurf, textRect)
 
 def Game_Text_Event():
-# Left
-    # Character Name
-    Text_ui(GameStateIG.Text_Line_Left[1], 10, 450)
-
-    # Text
-    Text_ui(GameStateIG.Text_Line_Left[2], 10, 470)
-    Text_ui(GameStateIG.Text_Line_Left[3], 10, 490)
-    Text_ui(GameStateIG.Text_Line_Left[4], 10, 510)
-    Text_ui(GameStateIG.Text_Line_Left[5], 10, 530)
-    Text_ui(GameStateIG.Text_Line_Left[6], 10, 550)
-    Text_ui(GameStateIG.Text_Line_Left[7], 10, 570)
-
-
-# Right
-    # Character Name
-    Text_ui(GameStateIG.Text_Line_Right[1], 460, 450)
-
-    # Text
-    Text_ui(GameStateIG.Text_Line_Right[2], 460, 470)
-    Text_ui(GameStateIG.Text_Line_Right[3], 460, 490)
-    Text_ui(GameStateIG.Text_Line_Right[4], 460, 510)
-    Text_ui(GameStateIG.Text_Line_Right[5], 460, 530)
-    Text_ui(GameStateIG.Text_Line_Right[6], 460, 550)
-    Text_ui(GameStateIG.Text_Line_Right[7], 460, 570)
+    Text_ui(GameStateIG.Text_Line[1], 157.5, 393)
+    Text_ui(GameStateIG.Text_Line[2], 157.5, 413.5)
+    Text_ui(GameStateIG.Text_Line[3], 157.5, 434)
+    Text_ui(GameStateIG.Text_Line[4], 157.5, 454.5)
+    Text_ui(GameStateIG.Text_Line[5], 157.5, 475)
+    Text_ui(GameStateIG.Text_Line[6], 157.5, 495.5)
+    Text_ui(GameStateIG.Text_Line[7], 157.5, 516)
+    Text_ui(GameStateIG.Text_Line[8], 157.5, 536.5)
     
 
 
@@ -175,7 +157,7 @@ def Text_Title_Selection(msg, font):
     return textSurface, textSurface.get_rect()
 
 def Text_ui(msg, x, y):
-    font = pygame.font.SysFont("comicsansms", 20)
+    font = pygame.font.SysFont("comicsansms",25)
     Text_Line = font.render(msg, True, Text_ui_Color)
     gameDisplay.blit(Text_Line,  (x,y))
         
