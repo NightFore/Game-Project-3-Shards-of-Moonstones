@@ -28,10 +28,10 @@ black = (0,0,0)
 green = (0,180,80)
 red = (200,0,0)
 Text_ui_Color = black
-game_ui_color = (147,169,213)
 
 bright_green = (96,255,96)
 bright_red = (255,96,96)
+game_ui_color = (245,218,168)
 text_action_color = black #Temporary
 
 sky_color = (153,217,234)
@@ -103,43 +103,26 @@ def Game_Intro():
 
     # Game Intro 1 :
         # Player Name
-        if GameStateIG.Event[1] == False :
-            if GameStateIG.Text_Order == 1:
-                GameStateIG.Text_Line_Right[1] = "Wake up young child..."
-                GameStateIG.Text_Line_Right[2] = "-> (Press Enter)"
+        if GameStateIG.Event[1] == False:
+            GameStateIG.Text_Line_Right[1] = "What is your name?"
+            GameStateIG.Text_Line_Right[2] = "-> (Enter your Name)"
+            GameStateIG.Event[1] = True
 
-            if GameStateIG.Text_Order == 2:
-                GameStateIG.Text_Line_Right[2] = ""
-                GameStateIG.Text_Line_Left[1] = "Huh...? Where am I?"
-                GameStateIG.Text_Line_Left[2] = "-> (Press Enter)"
-
-            if GameStateIG.Text_Order == 3:
-                GameStateIG.Text_Line_Left[2] = ""
-                GameStateIG.Text_Line_Right[2] = "Tell me your name."
-                GameStateIG.Text_Line_Right[3] = "-> (Press Enter)"
-
-            if GameStateIG.Text_Order == 4:
-                GameStateIG.Text_Line_Right[3] = "And maybe I can answer you."
-                GameStateIG.Text_Line_Right[4] = "-> (Enter your Name)"
-                GameStateIG.Text_Order = 1
-                GameStateIG.Event[1] = True
-
-
-        elif GameStateIG.Event[2] == False:
+        if GameStateIG.Event[2] == False:
             #Input Box
-            GameStateIG.State = "Character Name"
+            pygame.draw.line(gameDisplay, black, (0, 475),     (350, 475),     5)
             
             if GameStateIG.Text_Line_Left[0] != "":
                 PlayerIG = Player(GameStateIG.Text_Line_Left[0])
                 GameStateIG.Event[2] = True
 
             elif GameStateIG.Text_Order == 2 :
-                GameStateIG.Text_Line_Right[4] = "That doesn't seem like a real name!"
-                GameStateIG.Text_Line_Right[5] = "-> (Enter your Name)"
+                GameStateIG.Text_Line_Right[2] = "That doesn't seem like a real name!"
+                GameStateIG.Text_Line_Right[3] = "-> (Enter your Name)"
 
             elif GameStateIG.Text_Order == 3 :
-                GameStateIG.Text_Line_Right[5] = "Please, tell me your name!"
-                GameStateIG.Text_Line_Right[6] = "-> (Enter your Name)"
+                GameStateIG.Text_Line_Right[3] = "Please, tell me your name!"
+                GameStateIG.Text_Line_Right[4] = "-> (Enter your Name)"
                 
             elif GameStateIG.Text_Order == 4 :
                 GameStateIG.Text_Order = 3
@@ -150,39 +133,6 @@ def Game_Intro():
             GameStateIG.Text_Line_Right[3] = "-> (Press Enter)"
             GameStateIG.Text_Line_Right[4] = ""
             
-##
-##    # Game Intro 1 :
-##        # Player Name
-##        if GameStateIG.Event[1] == False:
-##            GameStateIG.Text_Line_Right[1] = "What is your name?"
-##            GameStateIG.Text_Line_Right[2] = "-> (Enter your Name)"
-##            GameStateIG.Event[1] = True
-##
-##        if GameStateIG.Event[2] == False:
-##            #Input Box
-##            pygame.draw.line(gameDisplay, black, (0, 475),     (350, 475),     5)
-##            
-##            if GameStateIG.Text_Line_Left[0] != "":
-##                PlayerIG = Player(GameStateIG.Text_Line_Left[0])
-##                GameStateIG.Event[2] = True
-##
-##            elif GameStateIG.Text_Order == 2 :
-##                GameStateIG.Text_Line_Right[2] = "That doesn't seem like a real name!"
-##                GameStateIG.Text_Line_Right[3] = "-> (Enter your Name)"
-##
-##            elif GameStateIG.Text_Order == 3 :
-##                GameStateIG.Text_Line_Right[3] = "Please, tell me your name!"
-##                GameStateIG.Text_Line_Right[4] = "-> (Enter your Name)"
-##                
-##            elif GameStateIG.Text_Order == 4 :
-##                GameStateIG.Text_Order = 3
-##
-##
-##        elif GameStateIG.Event[2] == True:
-##            GameStateIG.Text_Line_Right[2] = ("I see... Then, %s... " % PlayerIG.name)
-##            GameStateIG.Text_Line_Right[3] = "-> (Press Enter)"
-##            GameStateIG.Text_Line_Right[4] = ""
-##            
 
 
 
@@ -209,7 +159,7 @@ class GameState:
         self.Text_Order         = 1
 
         self.Event = [False,False,False,False,False,False]
-        self.State = ""
+
 GameStateIG = GameState("GameState")
 
         
@@ -285,11 +235,9 @@ def Text_Input(events):
             GameStateIG.Text_Order  = 1
 
 # INTRO CHARACTER NAME
-    if GameStateIG.State == "Character Name":         
+    if GameStateIG.Event[1] == True:         
         # Display
-        pygame.draw.rect(gameDisplay, black, [295, 395, 210, 40])
-        pygame.draw.rect(gameDisplay, game_ui_color, [300, 400, 200, 30])
-        gameDisplay.blit(GameStateIG.textinput.get_surface(), (305, 405))
+        gameDisplay.blit(GameStateIG.textinput.get_surface(), (10, 450))
 
 
 

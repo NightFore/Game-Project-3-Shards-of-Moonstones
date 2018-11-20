@@ -103,43 +103,43 @@ def Game_Intro():
 
     # Game Intro 1 :
         # Player Name
-        if GameStateIG.Event[1] == False :
-            if GameStateIG.Text_Order == 1:
-                GameStateIG.Text_Line_Right[1] = "Wake up young child..."
-                GameStateIG.Text_Line_Right[2] = "-> (Press Enter)"
+        GameStateIG.Event[1] == False
+        if GameStateIG.Text_Order == 1:
+            GameStateIG.Text_Line_Right[1] = "Wake up young child..."
+            GameStateIG.Text_Line_Right[2] = "-> (Press Enter)"
 
-            if GameStateIG.Text_Order == 2:
-                GameStateIG.Text_Line_Right[2] = ""
-                GameStateIG.Text_Line_Left[1] = "Huh...? Where am I?"
-                GameStateIG.Text_Line_Left[2] = "-> (Press Enter)"
+        if GameStateIG.Text_Order == 2:
+            GameStateIG.Text_Line_Right[2] = ""
+            GameStateIG.Text_Line_Left[1] = "Huh...? Where am I?"
+            GameStateIG.Text_Line_Left[2] = "-> (Press Enter)"
 
-            if GameStateIG.Text_Order == 3:
-                GameStateIG.Text_Line_Left[2] = ""
-                GameStateIG.Text_Line_Right[2] = "Tell me your name."
-                GameStateIG.Text_Line_Right[3] = "-> (Press Enter)"
+        if GameStateIG.Text_Order == 3:
+            GameStateIG.Text_Line_Left[2] = ""
+            GameStateIG.Text_Line_Right[2] = "Tell me your name."
+            GameStateIG.Text_Line_Right[3] = "-> (Press Enter)"
 
-            if GameStateIG.Text_Order == 4:
-                GameStateIG.Text_Line_Right[3] = "And maybe I can answer you."
-                GameStateIG.Text_Line_Right[4] = "-> (Enter your Name)"
-                GameStateIG.Text_Order = 1
-                GameStateIG.Event[1] = True
+        if GameStateIG.Text_Order == 4:
+            GameStateIG.Text_Line_Right[2] = "And maybe I can answer you."
+            GameStateIG.Text_Line_Right[3] = "-> (Enter your Name)"
+            GameStateIG.Event[1] = True
 
 
-        elif GameStateIG.Event[2] == False:
+        if GameStateIG.Event[1] == True:
             #Input Box
             GameStateIG.State = "Character Name"
             
+            
             if GameStateIG.Text_Line_Left[0] != "":
                 PlayerIG = Player(GameStateIG.Text_Line_Left[0])
-                GameStateIG.Event[2] = True
+                GameStateIG.Event[1] = True
 
             elif GameStateIG.Text_Order == 2 :
-                GameStateIG.Text_Line_Right[4] = "That doesn't seem like a real name!"
-                GameStateIG.Text_Line_Right[5] = "-> (Enter your Name)"
+                GameStateIG.Text_Line_Right[2] = "That doesn't seem like a real name!"
+                GameStateIG.Text_Line_Right[3] = "-> (Enter your Name)"
 
             elif GameStateIG.Text_Order == 3 :
-                GameStateIG.Text_Line_Right[5] = "Please, tell me your name!"
-                GameStateIG.Text_Line_Right[6] = "-> (Enter your Name)"
+                GameStateIG.Text_Line_Right[3] = "Please, tell me your name!"
+                GameStateIG.Text_Line_Right[4] = "-> (Enter your Name)"
                 
             elif GameStateIG.Text_Order == 4 :
                 GameStateIG.Text_Order = 3
