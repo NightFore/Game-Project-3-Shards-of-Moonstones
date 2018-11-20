@@ -146,9 +146,9 @@ def Game_Intro():
 
 
         elif GameStateIG.Event[2] == True:
-            GameStateIG.Text_Line_Right[2] = ("I see... Then, %s... " % PlayerIG.name)
-            GameStateIG.Text_Line_Right[3] = "-> (Press Enter)"
-            GameStateIG.Text_Line_Right[4] = ""
+            GameStateReset(False,"True")
+            GameStateIG.Text_Line_Right[1] = ("I see... Then, %s... " % PlayerIG.name)
+            GameStateIG.Text_Line_Right[2] = "-> (Press Enter)"
             
 ##
 ##    # Game Intro 1 :
@@ -211,6 +211,12 @@ class GameState:
         self.Event = [False,False,False,False,False,False]
         self.State = ""
 GameStateIG = GameState("GameState")
+
+def GameStateReset(Left,Right):
+    if Left == True:
+        GameStateIG.Line_Left = ["", "", "", "", "", "", "", ""]
+    if Right == "True":
+        GameStateIG.Line_Right = ["", "", "", "", "", "", "", ""]
 
         
 def Text_Display(msg, x, y, Text_Type):
