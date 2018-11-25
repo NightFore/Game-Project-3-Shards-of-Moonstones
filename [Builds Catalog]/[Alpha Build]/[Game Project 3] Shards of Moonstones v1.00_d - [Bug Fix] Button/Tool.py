@@ -22,7 +22,6 @@ class GameState:
         self.Text_Line_Right    = ["", "", "", "", "", "", "", ""]
         self.Text_Order         = 1
 
-        self.Cutscene = False
         self.Event = [False,False,False,False,False,False]
         self.Fight_Event = [False,False,False,False,False,False]
         self.State = ""

@@ -179,74 +179,50 @@ def Game_Intro_2():
     pygame.mixer.music.load("Data\OST\Selection_Menu\#1 Around a Campfire.mp3")
     pygame.mixer.music.play(-1)
 
-    # Reset
-    GameStateReset("Event")
-
-    # Cutscene
     GameStateIG.Text_Order = 0
-    
+    GameStateReset("Event")
+    global event
     gameExit = False
     while not gameExit:
         events = pygame.event.get()
         pygame.display.update()
-        gameDisplay.blit(Game_ui_Screen, (0,0))
-        Game_Text_Event()
-        Text_Input(events)
-        
-        # Game Intro 2 :
-        if GameStateIG.Event[1] == False:
-            # Cutscene
-            if GameStateIG.Text_Order == 0:
-                gameDisplay.blit(Game_ui_Screen_Black, (0,0))
-                Text_Display("1 Week Later...", display_width/2, display_height*3/8, Text_Introduction)
-                
-            if GameStateIG.Text_Order == 1:
-                GameStateIG.Text_Line_Left[1] = "Hm... Huh... What's happening?"
-                GameStateIG.Text_Line_Left[2] = "-> (Press Enter)"
-                
-            if GameStateIG.Text_Order == 2:
-                GameStateIG.Text_Line_Left[2] = "It's been noisy for a while now."
-                GameStateIG.Text_Line_Left[3] = "-> (Press Enter)"
-                
-            if GameStateIG.Text_Order == 3:
-                GameStateIG.Text_Line_Left[3] = "I probably should go check out"
-                GameStateIG.Text_Line_Left[4] = "what's happening outside."
-                GameStateIG.Text_Line_Left[5] = "-> (Press Enter)"
-
-            if GameStateIG.Text_Order == 4:
-                GameStateIG.Event[1] = True
-                GameStateIG.Event[2] = True
-                GameStateIG.Text_Order = 1
-
         for event in events:
+    # Setup
+            gameDisplay.blit(Game_ui_Screen, (0,0))
+            Game_Text_Event()
+            Text_Input(events)
             if event.type == pygame.QUIT:
                 exit()
-                
-            if GameStateIG.Event[2] == True :
-                Main_Game(event)
+
+        # Game Intro 2 :
+            if GameStateIG.Event[1] == False:
+                if GameStateIG.Text_Order == 0:
+                    gameDisplay.blit(Game_ui_Screen_Black, (0,0))
+                    Text_Display("1 Week Later...", display_width/2, display_height*3/8, Text_Introduction)
+                    
+                if GameStateIG.Text_Order == 1:
+                    GameStateIG.Text_Line_Left[1] = "Hm... Huh... What's happening?"
+                    GameStateIG.Text_Line_Left[2] = "-> (Press Enter)"
+                    
+                if GameStateIG.Text_Order == 2:
+                    GameStateIG.Text_Line_Left[2] = "It's been noisy for a while now."
+                    GameStateIG.Text_Line_Left[3] = "-> (Press Enter)"
+                    
+                if GameStateIG.Text_Order == 3:
+                    GameStateIG.Text_Line_Left[3] = "I probably should go check out"
+                    GameStateIG.Text_Line_Left[4] = "what's happening outside."
+                    GameStateIG.Text_Line_Left[5] = "-> (Press Enter)"
+
+                if GameStateIG.Text_Order == 4:
+                    GameStateIG.Event[1] = True
+                    GameStateIG.Text_Order = 1
+
+        
+            elif GameStateIG.Event[2] == False :
+                Level_Fight(event)
         
 
 def Main_Game(event):
-    
-    gameExit = False
-    while not gameExit:
-        events = pygame.event.get()
-        pygame.display.update()
-        # Background
-        if GameStateIG.Fight_Event[1] == False:
-            gameDisplay.blit(Game_ui_Screen, (0,0))
-            
-        Game_Text_Event()
-        Text_Input(events)
+    Level_Fight(event)
 
-        for event in events:
-            if event.type == pygame.QUIT:
-                exit()
-            Level_Fight()
-
-            # Fight State
-            if GameStateIG.Fight_Event[1] == True:
-                gameDisplay.blit(Game_ui_Fight, (0,0))
-                Game_ui(event)
-
-Game_Intro_2()
+Title_Screen()

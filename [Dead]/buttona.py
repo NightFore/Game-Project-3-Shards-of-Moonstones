@@ -1,5 +1,5 @@
 import pygame
-from buttona import *
+from buttonb import *
 
 pygame.init()
 width, height = (200,300)
@@ -13,14 +13,9 @@ green = (0,180,80)
 red = (200,0,0)
 
 
-def loop():
-    done = False
-    while not done:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                done = True
-            omg(0,100,200,200,green,red,event,Yolo)
-
-
-loop()
-pygame.quit()
+width, height = (200,300)
+gameDisplay = pygame.display.set_mode((width, height))
+def omg(x,y,w,h,ic,ac,event,action=None):
+    Button(0,100,200,200,green,red,event,Yolo)
+def Yolo():
+    print("lol")
