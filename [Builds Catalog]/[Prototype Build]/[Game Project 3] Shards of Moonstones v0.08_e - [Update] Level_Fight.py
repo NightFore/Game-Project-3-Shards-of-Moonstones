@@ -29,6 +29,7 @@ green = (0,180,80)
 red = (200,0,0)
 Text_ui_Color = black
 game_ui_color = (147,169,213)
+Introduction_Color = (112,146,190)
 
 bright_green = (96,255,96)
 bright_red = (255,96,96)
@@ -40,6 +41,7 @@ ground_color = (34,177,76)
     # Game Files
 Title_Screen_Background = pygame.image.load("Data\Background\Title_Screen_Background.png")
 Game_ui_Screen = pygame.image.load("Data\Game_ui\Game_ui_Cutscene.png")
+Game_ui_Screen_Black = pygame.image.load("Data\Game_ui\Game_ui_Screen_Black.png")
 
 
 
@@ -70,8 +72,12 @@ class Player:
 
 # Gameplay    
 def Title_Screen():
+    pygame.mixer.music.load("Data\OST\Main_Menu.mp3")
+    pygame.mixer.music.play(-1)
+    
     gameDisplay.blit(Title_Screen_Background, (0,0))
     Text_Display("Shards of Moostones", display_width/2, display_height*0.25, Text_Title_Screen)
+
     gameExit = False
     while not gameExit:
         for event in pygame.event.get():
@@ -79,14 +85,17 @@ def Title_Screen():
                 pygame.quit()
                 quit()
         # Button        # 200/400/600      - Box Width / 2     # Height            - Box Height /2      800/8 = 100      600 / 12 = 50
-        Button("Start", display_width*0.25 - display_width/16, display_height*0.75 - display_height/24, display_width/8, display_height/12, green, red, Text_Title_Selection, Game_Intro)
+        Button("Start", display_width*0.25 - display_width/16, display_height*0.75 - display_height/24, display_width/8, display_height/12, green, red, Text_Title_Selection, Game_Intro_1)
         Button("Load",  display_width*0.50 - display_width/16, display_height*0.75 - display_height/24, display_width/8, display_height/12, green, red, Text_Title_Selection, Game_Load)
         Button("Exit",  display_width*0.75 - display_width/16, display_height*0.75 - display_height/24, display_width/8, display_height/12, green, red, Text_Title_Selection, Quit_Game)
 
         pygame.display.update()
 
  
-def Game_Intro():
+def Game_Intro_1():
+    pygame.mixer.music.load("Data\OST\Cutscene\Introduction.mp3")
+    pygame.mixer.music.play(-1)
+    
     gameExit = False
     while not gameExit:
         events = pygame.event.get()
@@ -99,7 +108,6 @@ def Game_Intro():
         Game_Text_Event()
         global PlayerIG
         Text_Input(events)
-        print(GameStateIG.Text_Order)
 
     # Game Intro 1 :
         # Player Name
@@ -131,7 +139,10 @@ def Game_Intro():
             
             if GameStateIG.Text_Line_Left[0] != "":
                 PlayerIG = Player(GameStateIG.Text_Line_Left[0])
+
+                GameStateIG.State = ""
                 GameStateIG.Event[2] = True
+                GameStateIG.Text_Order = 1
 
             elif GameStateIG.Text_Order == 2 :
                 GameStateIG.Text_Line_Right[4] = "That doesn't seem like a real name!"
@@ -145,44 +156,127 @@ def Game_Intro():
                 GameStateIG.Text_Order = 3
 
 
-        elif GameStateIG.Event[2] == True:
-            GameStateReset(False,"True")
-            GameStateIG.Text_Line_Right[1] = ("I see... Then, %s... " % PlayerIG.name)
-            GameStateIG.Text_Line_Right[2] = "-> (Press Enter)"
+        elif GameStateIG.Event[3] == False:
+            if GameStateIG.Text_Order == 1:
+                GameStateIG.Text_Line_Left[2] = "My name is %s." % PlayerIG.name
+                GameStateIG.Text_Line_Left[3] = "-> (Press Enter)"
             
-##
-##    # Game Intro 1 :
-##        # Player Name
-##        if GameStateIG.Event[1] == False:
-##            GameStateIG.Text_Line_Right[1] = "What is your name?"
-##            GameStateIG.Text_Line_Right[2] = "-> (Enter your Name)"
-##            GameStateIG.Event[1] = True
-##
-##        if GameStateIG.Event[2] == False:
-##            #Input Box
-##            pygame.draw.line(gameDisplay, black, (0, 475),     (350, 475),     5)
-##            
-##            if GameStateIG.Text_Line_Left[0] != "":
-##                PlayerIG = Player(GameStateIG.Text_Line_Left[0])
-##                GameStateIG.Event[2] = True
-##
-##            elif GameStateIG.Text_Order == 2 :
-##                GameStateIG.Text_Line_Right[2] = "That doesn't seem like a real name!"
-##                GameStateIG.Text_Line_Right[3] = "-> (Enter your Name)"
-##
-##            elif GameStateIG.Text_Order == 3 :
-##                GameStateIG.Text_Line_Right[3] = "Please, tell me your name!"
-##                GameStateIG.Text_Line_Right[4] = "-> (Enter your Name)"
-##                
-##            elif GameStateIG.Text_Order == 4 :
-##                GameStateIG.Text_Order = 3
-##
-##
-##        elif GameStateIG.Event[2] == True:
-##            GameStateIG.Text_Line_Right[2] = ("I see... Then, %s... " % PlayerIG.name)
-##            GameStateIG.Text_Line_Right[3] = "-> (Press Enter)"
-##            GameStateIG.Text_Line_Right[4] = ""
-##            
+            if GameStateIG.Text_Order == 2:
+                GameStateReset(False,True)
+                GameStateIG.Text_Line_Left[3] = ""
+                GameStateIG.Text_Line_Right[1] = ("I see... You're %s... " % PlayerIG.name)
+                GameStateIG.Text_Line_Right[2] = "-> (Press Enter)"
+            
+            if GameStateIG.Text_Order == 3:
+                GameStateIG.Text_Line_Right[2] = ("So that's my new Summon Name.")
+                GameStateIG.Text_Line_Right[3] = "-> (Press Enter)"
+            
+            if GameStateIG.Text_Order == 4:
+                GameStateIG.Text_Line_Right[3] = ""
+                GameStateIG.Text_Line_Left[3] = "Wh... What do you mean?"
+                GameStateIG.Text_Line_Left[4] = "-> (Press Enter)"
+            
+            if GameStateIG.Text_Order == 5:
+                GameStateIG.Text_Line_Left[4] = ""
+                GameStateIG.Text_Line_Right[3] = ("It means that I will look after you.")
+                GameStateIG.Text_Line_Right[4] = "-> (Press Enter)"
+            
+            if GameStateIG.Text_Order == 6:
+                GameStateIG.Text_Line_Right[4] = ("But you will also have to obey me.")
+                GameStateIG.Text_Line_Right[5] = "-> (Press Enter)"
+            
+            if GameStateIG.Text_Order == 7:
+                GameStateIG.Text_Line_Right[5] = ("I hope you won't disappoint me.")
+                GameStateIG.Text_Line_Right[6] = "-> (Press Enter)"
+            
+            if GameStateIG.Text_Order == 8:
+                GameStateIG.Event[3] = True
+                GameStateIG.Text_Order = 1
+
+
+        elif GameStateIG.Event[4] == False:
+            if GameStateIG.Text_Order == 1:
+                GameStateReset(False,True)
+                GameStateIG.Text_Line_Right[1] = "I will send you off to accomplish"
+                GameStateIG.Text_Line_Right[2] = "a important mission."
+                GameStateIG.Text_Line_Right[3] = "-> (Press Enter)"
+                
+            if GameStateIG.Text_Order == 2:
+                GameStateIG.Text_Line_Right[3] = ""
+                GameStateIG.Text_Line_Left[4] = "So what is that mission?"
+                GameStateIG.Text_Line_Left[5] = "-> (Press Enter)"
+                
+            if GameStateIG.Text_Order == 3:
+                GameStateIG.Text_Line_Left[5] = ""
+                GameStateIG.Text_Line_Right[3] = "You don't have to know about it."
+                GameStateIG.Text_Line_Right[4] = "-> (Press Enter)"
+                
+            if GameStateIG.Text_Order == 4:
+                GameStateIG.Text_Line_Right[4] = "You will understand when you will"
+                GameStateIG.Text_Line_Right[5] = "have to do when you confront her."
+                GameStateIG.Text_Line_Right[6] = "-> (Press Enter)"
+                
+            if GameStateIG.Text_Order == 5:
+                GameStateIG.Text_Line_Right[6] = "You're going to fall asleep now."
+                GameStateIG.Text_Line_Right[7] = "-> (Press Enter)"
+                
+            if GameStateIG.Text_Order == 6:
+                Game_Intro_2()
+
+
+
+
+def Game_Intro_2():
+    GameStateIG.Text_Order = 0
+    GameEventReset()
+
+    gameExit = False
+    while not gameExit:
+        events = pygame.event.get()
+        for event in events:
+            if event.type == pygame.QUIT:
+                exit()
+# Setup
+        pygame.display.update()
+        gameDisplay.blit(Game_ui_Screen, (0,0))
+        Game_Text_Event()
+        Text_Input(events)
+
+
+    # Game Intro 2 :
+        # Transition
+        if GameStateIG.Event[1] == False :
+            if GameStateIG.Text_Order == 0:
+                gameDisplay.blit(Game_ui_Screen_Black, (0,0))
+                Text_Display("1 Week Later...", display_width/2, display_height*3/8, Text_Introduction)
+    
+            if GameStateIG.Text_Order == 1:
+                GameStateIG.Event[1] = True
+
+        # Part 1
+        elif GameStateIG.Event[2] == False :
+            if GameStateIG.Text_Order == 1:
+                GameStateIG.Text_Line_Left[1] = "Hm... Huh... What's happening?"
+                GameStateIG.Text_Line_Left[2] = "-> (Press Enter)"
+                
+            if GameStateIG.Text_Order == 2:
+                GameStateIG.Text_Line_Left[2] = "It's been noisy for a while now."
+                GameStateIG.Text_Line_Left[3] = "-> (Press Enter)"
+                
+            if GameStateIG.Text_Order == 3:
+                GameStateIG.Text_Line_Left[3] = "I probably should go check out"
+                GameStateIG.Text_Line_Left[4] = "What's happening outside."
+                GameStateIG.Text_Line_Left[5] = "-> (Press Enter)"
+
+            if GameStateIG.Text_Order == 4:
+                GameStateIG.Event[2] = True
+                GameStateIG.Text_Order = 1
+
+        # Part 2
+        elif GameStateIG.Event[3] == False :
+            GameStateIG.Game_Progress = "LvL1"
+            Level_Fight()
+        
 
 
 
@@ -196,8 +290,37 @@ def Game_Intro():
 
 
 
+# Level Design
+def Level_Fight():
+    if GameStateIG.Game_Progress == "LvL1":
+        # OST
+        if GameStateIG.Fight_Event[0] == False:
+            GameStateReset(True,True)
+            pygame.mixer.music.load("Data\OST\Fight\#1-1 Village_Under_Attack.mp3")
+            pygame.mixer.music.play(-1)
+            GameStateIG.Fight_Event[0] = True
+
+        elif GameStateIG.Fight_Event[1] == False:
+            if GameStateIG.Text_Order == 1:
+                GameStateIG.Text_Line_Left[1] = "Wow! What was that?"
+                GameStateIG.Text_Line_Left[2] = "-> (Press Enter)"
+
+            if GameStateIG.Text_Order == 2:
+                GameStateIG.Text_Line_Left[2] = "Wasn't that a Wolf just now?"
+                GameStateIG.Text_Line_Left[3] = "-> (Press Enter)"
+
+            if GameStateIG.Text_Order == 3:
+                GameStateIG.Text_Line_Left[3] = "I'll defeat him for now."
+                GameStateIG.Text_Line_Left[4] = "-> (Press Enter)"
+                
+    
 
 
+
+
+
+
+                
 
     # Game Tools Development   
 # Main Tools
@@ -209,14 +332,31 @@ class GameState:
         self.Text_Order         = 1
 
         self.Event = [False,False,False,False,False,False]
+        self.Fight_Event = [False,False,False,False,False,False]
         self.State = ""
+
+        self.Game_Progress = ""
 GameStateIG = GameState("GameState")
 
 def GameStateReset(Left,Right):
     if Left == True:
-        GameStateIG.Line_Left = ["", "", "", "", "", "", "", ""]
-    if Right == "True":
-        GameStateIG.Line_Right = ["", "", "", "", "", "", "", ""]
+        GameStateIG.Text_Line_Left = ["", "", "", "", "", "", "", ""]
+    if Right == True:
+        GameStateIG.Text_Line_Right = ["", "", "", "", "", "", "", ""]
+
+
+def GameEventReset():
+    GameStateIG.Text_Line_Left = ["", "", "", "", "", "", "", ""]
+    GameStateIG.Text_Line_Right = ["", "", "", "", "", "", "", ""]
+    GameStateIG.Event = [False,False,False,False,False,False]
+    GameStateIG.Fight_Event = [False,False,False,False,False,False]
+    GameStateIG.State = ""
+    
+
+
+
+
+
 
         
 def Text_Display(msg, x, y, Text_Type):
@@ -287,8 +427,9 @@ def Text_Input(events):
         #Reset Text Input
         GameStateIG.textinput = pygame_textinput.TextInput()
 
-    if GameStateIG.Text_Order > 7:
-            GameStateIG.Text_Order  = 1
+# Rest Text Order => 1
+##    if GameStateIG.Text_Order > 7:
+##            GameStateIG.Text_Order  = 1
 
 # INTRO CHARACTER NAME
     if GameStateIG.State == "Character Name":         
@@ -316,5 +457,11 @@ def Text_ui(msg, x, y):
     font = pygame.font.SysFont("comicsansms", 20)
     Text_Line = font.render(msg, True, Text_ui_Color)
     gameDisplay.blit(Text_Line,  (x,y))
+
+def Text_Introduction(msg, font):
+    font = pygame.font.SysFont(None, 75)
+    textSurface = font.render(msg, True, (Introduction_Color))
+    return textSurface, textSurface.get_rect()
+    
         
 Title_Screen()
