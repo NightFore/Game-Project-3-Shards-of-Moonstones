@@ -42,7 +42,7 @@ def Title_Screen():
             pygame.display.update()
             
 def Game_Intro_1():
-    pygame.mixer.music.load(Introduction)
+    pygame.mixer.music.load(Wake_Up)
     pygame.mixer.music.play(-1)
     
     gameExit = False
@@ -176,7 +176,7 @@ def Game_Intro_1():
 
 def Game_Intro_2():
     # OST
-    pygame.mixer.music.load("Data\OST\Selection_Menu\#1 Around a Campfire.mp3")
+    pygame.mixer.music.load(Around_a_Campfire)
     pygame.mixer.music.play(-1)
 
     # Reset

@@ -30,5 +30,6 @@ Wolf_Icon = pygame.image.load("Data\Icon\Wolf_Icon.png")
 
     # OST
 Main_Menu_OST = "Data\OST\Main_Menu.mp3"
-Introduction = "Data\OST\Cutscene\Introduction.mp3"
-Village_Under_Attack = "Data\OST\Fight\#1-1 Village_Under_Attack.mp3"
+Wake_Up = "Data\OST\Cutscene_1_1_Wake_Up.mp3"
+Around_a_Campfire = "Data\OST\Cutscene_1_2_Around a Campfire.mp3"
+Village_Under_Attack = "Data\OST\Fight_1_1_Village_Under_Attack.mp3"
