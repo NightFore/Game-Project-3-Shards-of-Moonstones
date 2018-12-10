@@ -223,31 +223,30 @@ def Game_Intro_2():
 
                 # Sound
                 if GameStateIG.Event[2] == False:
-                    Sound_Wolf_Roar.play()
+                    Wolf_Roar.play()
                     GameStateIG.Event[2] = True
                     
             if GameStateIG.Text_Order == 4:
                 GameStateIG.Event[1] = True
                 GameStateIG.Event[3] = True
+                GameStateIG.Text_Order = 1
 
         for event in events:
             if event.type == pygame.QUIT:
                 exit()
                 
             if GameStateIG.Event[3] == True :
-                GameStateIG.State = "Fight"
-                GameStateIG.Background = "Cutscene"
-                Main_Level()
+                Main_Game(event)
         
 
-def Main_Level():
+def Main_Game(event):
+    
     gameExit = False
     while not gameExit:
         events = pygame.event.get()
         pygame.display.update()
-        
         # Background
-        if GameStateIG.Background == "Cutscene":
+        if GameStateIG.Fight_Event[1] == False:
             gameDisplay.blit(Game_ui_Screen, (0,0))
             
         Game_Text_Event()
@@ -256,32 +255,11 @@ def Main_Level():
         for event in events:
             if event.type == pygame.QUIT:
                 exit()
+            Level_Fight()
 
-            # Main_Level
-            if GameStateIG.State == "":
-                pass
+            # Fight State
+            if GameStateIG.Fight_Event[1] == True:
+                gameDisplay.blit(Game_ui_Fight, (0,0))
+                Game_ui(event)
 
-
-            # Fight
-            if GameStateIG.State == "Fight":
-                Level_Fight()
-
-            # Start Fight
-            if GameStateIG.Background == "Fight":
-                gameDisplay.blit(Interface_Fight, (0,0))
-                Game_ui_Fight(event)
-
-            # Win
-            elif GameStateIG.State == "Win":
-                Win()
-
-            # Results
-            elif GameStateIG.State == "Results":
-                GameStateReset("All")
-                GameStateIG.Background = "Results"
-                gameDisplay.blit(Interface_Results, (0,0))
-                Game_ui_Results(event)
-                
-            
-
-Game_Intro_2()
+Title_Screen()

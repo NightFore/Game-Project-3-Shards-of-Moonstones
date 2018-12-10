@@ -19,7 +19,6 @@ def Title_Screen():
     global PlayerIG
 
     # OST
-    pygame.mixer.music.load(Main_Menu_OST)
     pygame.mixer.music.play(-1)
 
     # Background
@@ -284,4 +283,4 @@ def Main_Level():
                 
             
 
-Game_Intro_2()
+Title_Screen()

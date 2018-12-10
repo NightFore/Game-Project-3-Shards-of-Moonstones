@@ -52,8 +52,8 @@ Boss_Shadow_Figure      = "Data/OST/Fight_1_4_Boss_Shadow_Figure.mp3"
 
 Sense_of_Duty           = "Data/OST/Fight_2_1_Sense_of_Duty.mp3"
 They_Need_Our_Help     = "Data/OST/Fight_2_2_They_Need_Our_Help.mp3"
-Is_he_the_Mastermind    = "Data/OST/Fight_2_3_Is_he_the_Mastermind.mp3"
-Dominating_The_Hill     = "Data/OST/Fight_2_4_Dominating_The_Hill.mp3"
+Dominating_The_Hill     = "Data/OST/Fight_2_3_Dominating_The_Hill.mp3"
+Is_he_the_Mastermind    = "Data/OST/Fight_2_4_Is_he_the_Mastermind.mp3"
 Last_Frontline          = "Data/OST/Fight_2_5_Last_Frontline.mp3"
 
 I_am_Ready         = "Data/OST/Menu_Selection_1_I_am_Ready.mp3"

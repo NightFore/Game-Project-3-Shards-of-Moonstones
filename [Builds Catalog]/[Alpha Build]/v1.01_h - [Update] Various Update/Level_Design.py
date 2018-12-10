@@ -20,8 +20,6 @@ def Level_Fight():
 
             GameStateIG.Text_Line_Left[1] = "What was a Monster doing here?"
             GameStateIG.Text_Line_Left[2] = "-> (Press Enter)"
-
-            GameStateIG.Background = "Cutscene"
             GameStateIG.Text_Order = 1
 
 
@@ -62,7 +60,7 @@ def Level_Fight():
                 GameStateReset("All")
 
                 # Fight Background
-                GameStateIG.Background = "Fight"
+                GameStateIG.Background = 1
 
 
 def Win():
@@ -78,7 +76,7 @@ def Win():
             GameStateIG.Text_Line_Left[4] = "-> (Press Enter)"
             
         if GameStateIG.Text_Order == 3:
-            GameStateIG.Text_Line_Left[4] = "I wonder if they are all safe..."
+            GameStateIG.Text_Line_Left[4] = "I wonder if they are all safe"
             GameStateIG.Text_Line_Left[5] = "-> (Press Enter)"
 
         if GameStateIG.Text_Order == 4:
@@ -87,3 +85,4 @@ def Win():
 
         if GameStateIG.Text_Order == 5:
             GameStateIG.State = "Results"
+

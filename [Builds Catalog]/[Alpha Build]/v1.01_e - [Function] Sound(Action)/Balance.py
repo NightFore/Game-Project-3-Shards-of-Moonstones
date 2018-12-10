@@ -6,8 +6,6 @@ class Player:
         self.name = name
         
         self.Level = 1
-        self.Experience = 0
-        
         self.Maxhealth  = 44
         self.Health     = self.Maxhealth
         self.MaxMP      = 20
@@ -38,24 +36,19 @@ WolfIG = Wolf("Wolf")
 
 
 def Attack():
-    # Hit Chance
     Accuracy = (50 + (0.5*PlayerIG.Level)) * (PlayerIG.Speed**2 / GameStateIG.Ennemy[0].Speed**2)
     Hit = random.randint(0, 100)
-
+    print("Accuracy =", Accuracy)
+    print("Hit =", Hit)
     if Accuracy >= Hit:
-        # Damage
         GameStateIG.Ennemy[0].Health -= PlayerIG.Strength
         Sound("Attack")
-
-        # HP Loss Cap
-        if GameStateIG.Ennemy[0].Health < 0:
-            GameStateIG.Ennemy[0].Health = 0
             
 
 def Magic():
     pass
 
-def Potion():
+def Guard():
     pass
 
 

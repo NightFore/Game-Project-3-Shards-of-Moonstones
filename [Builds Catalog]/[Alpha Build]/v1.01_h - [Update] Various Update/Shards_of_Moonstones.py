@@ -236,18 +236,17 @@ def Game_Intro_2():
                 
             if GameStateIG.Event[3] == True :
                 GameStateIG.State = "Fight"
-                GameStateIG.Background = "Cutscene"
-                Main_Level()
+                Main_Level(event)
         
 
-def Main_Level():
+def Main_Level(event):
     gameExit = False
     while not gameExit:
         events = pygame.event.get()
         pygame.display.update()
         
         # Background
-        if GameStateIG.Background == "Cutscene":
+        if GameStateIG.Background == 0:
             gameDisplay.blit(Game_ui_Screen, (0,0))
             
         Game_Text_Event()
@@ -257,31 +256,17 @@ def Main_Level():
             if event.type == pygame.QUIT:
                 exit()
 
-            # Main_Level
-            if GameStateIG.State == "":
-                pass
-
-
             # Fight
             if GameStateIG.State == "Fight":
                 Level_Fight()
 
-            # Start Fight
-            if GameStateIG.Background == "Fight":
-                gameDisplay.blit(Interface_Fight, (0,0))
-                Game_ui_Fight(event)
+                # Start Fight
+                if GameStateIG.Background == 1:
+                    gameDisplay.blit(Game_ui_Fight, (0,0))
+                    Game_ui(event)
 
             # Win
             elif GameStateIG.State == "Win":
                 Win()
 
-            # Results
-            elif GameStateIG.State == "Results":
-                GameStateReset("All")
-                GameStateIG.Background = "Results"
-                gameDisplay.blit(Interface_Results, (0,0))
-                Game_ui_Results(event)
-                
-            
-
-Game_Intro_2()
+Title_Screen()

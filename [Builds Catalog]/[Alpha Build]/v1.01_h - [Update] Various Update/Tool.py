@@ -31,7 +31,7 @@ class GameState:
         self.Turn_Count = 0
         
         self.Sound = False
-        self.Background = "Cutscene"
+        self.Background = 0
         
         self.Ennemy = ["","",""]
 GameStateIG = GameState("GameState")
@@ -52,18 +52,15 @@ def GameStateReset(State):
         GameStateIG.Text_Line_Right = ["", "", "", "", "", "", "", ""]
         GameStateIG.Event = [False,False,False,False,False,False]
         GameStateIG.Fight_Event = [False,False,False,False,False,False]
-        GameStateIG.Sound = False
-        GameStateIG.Background = 0
-        GameStateIG.State = "" 
-
+        GameStateIG.State = ""
 
     if State == "Win":
         GameStateIG.Text_Line_Left = ["", "", "", "", "", "", "", ""]
         GameStateIG.Text_Line_Right = ["", "", "", "", "", "", "", ""]
         GameStateIG.Event = [False,False,False,False,False,False]
-        GameStateIG.Fight_Event = [False,False,False,False,False,False]
+        GameStateIG.Fight_Event = [False,False,False,False,False,False]   
         GameStateIG.Sound = False
-        GameStateIG.Background = 0
+        GameStateIG.Background = 0     
 
     
 def Button(msg,x,y,w,h,ic,ac,Text_Type,event,action=None):
