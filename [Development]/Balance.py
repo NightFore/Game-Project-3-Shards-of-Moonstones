@@ -8,15 +8,15 @@ class Player:
         self.Level = 1
         self.Experience = 0
         
-        self.Maxhealth  = 44
+        self.Maxhealth  = 70 + 6 * (self.Level - 1)
         self.Health     = self.Maxhealth
         self.MaxMP      = 20
         self.MP         = self.MaxMP
-        self.Strength   = 6
-        self.Magic      = 2
-        self.Speed      = 4
-        self.Defense    = 2
-        self.Resistance = 0
+        self.Strength   = 6 + 2 * (self.Level - 1)
+        self.Magic      = 2 + 1 * (self.Level - 1)
+        self.Speed      = 4 + 3 * (self.Level - 1)
+        self.Defense    = 2 + 1 * (self.Level - 1)
+        self.Resistance = 0 + 0.5 * (self.Level - 1)
 PlayerIG = Player("NightFore")
 
 class Wolf:
@@ -24,7 +24,7 @@ class Wolf:
         self.name = name
 
         self.Level = 1
-        self.Maxhealth  = 40 + 6 * (self.Level - 1)
+        self.Maxhealth  = 30 + 6 * (self.Level - 1)
         self.Health     = self.Maxhealth
         self.MaxMP      = 0
         self.MP         = self.MaxMP
@@ -34,8 +34,50 @@ class Wolf:
         self.Resistance = 0 + 0.5 * (self.Level - 1)
 WolfIG = Wolf("Wolf")
 
+class Werewolf:
+    def __init__(self, name):
+        self.name = name
 
+        self.Level = 1
+        self.Maxhealth  = 45 + 7 * (self.Level - 1)
+        self.Health     = self.Maxhealth
+        self.MaxMP      = 0
+        self.MP         = self.MaxMP
+        self.Attack     = 6 + 2 * (self.Level - 1)
+        self.Speed      = 4 + 1 * (self.Level - 1)
+        self.Defense    = 2 + 0.7 * (self.Level - 1)
+        self.Resistance = 0 + 0.8 * (self.Level - 1)
+WerewolfIG = Werewolf("Werewolf")
 
+class Spectre:
+    def __init__(self, name):
+        self.name = name
+
+        self.Level = 1
+        self.Maxhealth  = 90 + 7 * (self.Level - 1)
+        self.Health     = self.Maxhealth
+        self.MaxMP      = 0
+        self.MP         = self.MaxMP
+        self.Attack     = 6 + 2 * (self.Level - 1)
+        self.Speed      = 4 + 1 * (self.Level - 1)
+        self.Defense    = 5 + 0.7 * (self.Level - 1)
+        self.Resistance = 0 + 0.8 * (self.Level - 1)
+SpectrefIG = Spectre("Spectre")
+
+class ShadowFigure :
+    def __init__(self, name):
+        self.name = name
+
+        self.Level = 1
+        self.Maxhealth  = 120
+        self.Health     = self.Maxhealth
+        self.MaxMP      = 0
+        self.MP         = self.MaxMP
+        self.Attack     = 20
+        self.Speed      = 12
+        self.Defense    = 6
+        self.Resistance = 0
+ShadowFigureIG = ShadowFigure("ShadowFigure")
 
 def Attack():
     # Hit Chance
@@ -75,3 +117,5 @@ def Sound(Action):
         elif Sound == 2:
             Sound_Hit_Damage_2.play()
         Action = ""
+
+              
