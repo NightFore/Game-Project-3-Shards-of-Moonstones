@@ -93,8 +93,6 @@ Results_Screen()
 
 
 
-
-
     # Main_Menu
 # Background
 Background_Main_Menu_1
@@ -114,7 +112,6 @@ Characters()
 Inventory()
 Game_Save()
 World_Map()
-
 
 
 
@@ -146,7 +143,6 @@ Wh...What!? The village is in fire!
 What happened there?
 I can see some people still trying to escape!
 I have to rush over there and help them!
-
 
 
 
@@ -196,7 +192,6 @@ I need to hurry up and join them.
 
 
 
-
     # GameStateIG.Game_Progress == 5
 # Background
 Background_Fight
@@ -242,91 +237,12 @@ Yeah, you're right.
 
 
 
-
     # GameStateIG.Game_Progress == 6
 # Background
 Background_Fight
 
 # OST
-Fight_1_3_Pushing_Forward
 
 # Enemy List
-Direwolf LvL 2
-Direwolf LvL 2
 
-# Introduction
-We should head toward the center of the Village.
-From what I've seen, it seems like that most of the wolves were gathering there.
-
-There are a couple of wolves over there!
-Get ready!
-
-# Victory
-We're near the center of the village now.
-
-Their numbers keep growing up...
-I wonder what's happening here...
-
-
-
-
-    # GameStateIG.Game_Progress == 6
-# Background
-Background_Fight
-
-# OST
-Fight_1_4_Intimidating_Foe
-
-# Enemy List
-Shadow Figure LvL ??
-Direwolf LvL 4
-Wolf LvL 5
-
-# Introduction
-So, we reached the center of the Village.
-What do we do now? Have you seen their numbers?
-
-
-If we want to halt the slaughter, we must stop them from there.
-
-Isn't that dangerous to take them all at once!?
-
-We can bait them out of there.
-I'll throw an explosive on them so they run away from here.
-
-I hope they don't run toward us.
-
-    (SFX_Explosive)
-    (SFX_Wolf_Howl)
-
-Alright, it worked!
-Now, let's look for their leader and take him down!
-
-    (SFX_Shadow_figure)
-
-Is that thing their leader...?
-It doesn't seem like a living being...
-Can we kill it?
-
-What is a demon doing out there?
-
-A demon?
-
-Yes, it's a creature summoned by the Dark Lord to help him conquering territories.
-The one in front of us is probably one of its general.
-Though this Shadow Figure doesn't have a body, it still should receive damage from our attacks.
-
-If you say so, then let's go!
-We've got no other choice!
-
-# Victory
-They're gone! We beat them!
-The village is safe now!
-
-Let's look for surviving people.
-I'm sure a few of them are injured or need some help.
-
-We should also gather the people over here.
-
-Yes, you're right. Let's do that.
 

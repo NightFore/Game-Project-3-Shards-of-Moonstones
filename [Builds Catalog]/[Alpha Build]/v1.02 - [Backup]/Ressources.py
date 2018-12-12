@@ -66,7 +66,7 @@ Game_Credits                = "Data/OST/Cutscene_2_3_Game_Credits.mp3"
 Fierce_Riposte              = "Data/OST/Fight_1_1_Fierce_Riposte.mp3"
 Pushing_Forward             = "Data/OST/Fight_1_2_Pushing_Forward.mp3"
 Together_We_Shall_Overcome  = "Data/OST/Fight_1_3_Together_We_Shall_Overcome.mp3"
-Intimidating_Foe             = "Data/OST/Fight_1_4_Intimidating_Foe.mp3"
+Overhelming_Foe             = "Data/OST/Fight_1_4_Overhelming_Foe.mp3"
 
 Sense_of_Duty               = "Data/OST/Fight_2_1_Sense_of_Duty.mp3"
 Running_Through_the_Hills   = "Data/OST/Fight_2_2_Running_Through_the_Hills.mp3"
