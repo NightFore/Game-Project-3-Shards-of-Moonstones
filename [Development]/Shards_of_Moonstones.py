@@ -19,7 +19,7 @@ def Title_Screen():
     global PlayerIG
 
     # OST
-    pygame.mixer.music.load(Main_Menu_OST)
+    pygame.mixer.music.load(Undisturbed_Place)
     pygame.mixer.music.play(-1)
 
     # Background
@@ -42,7 +42,7 @@ def Title_Screen():
             pygame.display.update()
             
 def Game_Intro_1():
-    pygame.mixer.music.load(Wake_Up)
+    pygame.mixer.music.load(Serenity)
     pygame.mixer.music.play(-1)
     
     gameExit = False
@@ -284,4 +284,4 @@ def Main_Level():
                 
             
 
-Game_Intro_2()
+Title_Screen()

@@ -90,85 +90,18 @@ def Game_ui_Main(event):
 
 
 def Shop():
-    # Welcome Statement
-    if GameStateIG.Game_Event[2] == False:
-        Game_State_Reset("Store")
-        GameStateIG.Text_Order = 1
-        GameStateIG.Game_Event[2] = True
-        GameStateIG.Game_Event[3] = False
-
-    elif GameStateIG.Game_Event[2] == True and GameStateIG.Game_Event[3] == False:
-        GameStateIG.Text_Line[1] = "Hello Traveler!"
-        GameStateIG.Text_Line[2] = "->"
-
-    # List of Actions
-    if GameStateIG.Text_Order == 2:
-        GameStateIG.Game_Event[2] = True
-        GameStateIG.Game_Event[3] = False
-        
-        GameStateIG.Text_Line[2] = "What would you like to buy?"
-        GameStateIG.Text_Line[3] = "Bronze Lance (%s Gold)" % weapons["Bronze Lance"]
-        GameStateIG.Text_Line[4] = "Iron Lance (%s Gold)" % weapons["Iron Lance"]
-        GameStateIG.Text_Line[5] = "Potion (50 Gold)"
-        GameStateIG.Text_Line[6] = "Cancel"
-        GameStateIG.Text_Line[7] = "->"
-
-    # Text Input
-    elif GameStateIG.Text_Order == 3 and GameStateIG.Game_Event[3] == False:
-        # Prevent Looping
-        GameStateIG.Game_Event[3] = True
-        
-        # Buy a New Weapon
-        if GameStateIG.Text_Line[0] in weapons:
-            # Confirming Purchase
-            if PlayerIG.gold >= weapons[GameStateIG.Text_Line[0]]:
-                PlayerIG.gold -= weapons[GameStateIG.Text_Line[0]]
-                PlayerIG.weap.append(GameStateIG.Text_Line[0])
-                
-                Game_State_Reset("Store")
-                GameStateIG.Text_Line[2] = "Thank you for your Purchase!"
-                GameStateIG.Text_Line[3] = "->"
-                    
-            # No Enough Money
-            else:
-                Game_State_Reset("Store")
-                GameStateIG.Text_Line[2] = "Sorry, but you don't have enough Gold!"
-                GameStateIG.Text_Line[3] = "->"
-
-        # Leave the Shop
-        elif GameStateIG.Text_Line[0] == "Potion":
-            PlayerIG.gold >= 50
-            PlayerIG.potion += 1
-            PlayerIG.gold -= 50
-            
-            Game_State_Reset("Store")
-            GameStateIG.Text_Line[2] = "Thank you for your Purchase!"
-            GameStateIG.Text_Line[3] = "->"
-
-        # Leave the Shop
-        elif GameStateIG.Text_Line[0] == "Cancel":
-            LvL1()
-
-        # Missing Weapon
-        else:
-            Game_State_Reset("Store")
-            GameStateIG.Text_Line[2] = "Sorry but I don't own that sort of Item!"
-            GameStateIG.Text_Line[3] = "->"
-
-    # Loop
-    elif GameStateIG.Text_Order == 4:
-        GameStateIG.Text_Order = 2
+    pass
 
 def Training():
     pass
 
 def Next_Level():
-    pass
+    GameStateIG.Game_Progress += 1
 
 def Characters_Status():
     pass
 
-def Invetory():
+def Inventory():
     pass
 
 def World_Map():

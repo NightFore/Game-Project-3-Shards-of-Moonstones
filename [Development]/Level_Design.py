@@ -7,7 +7,7 @@ def Level_Fight():
     # Stage 1
     if GameStateIG.Game_Progress == 1:
 
-        # Stage 1 - Ennemies :
+        # Stage 1 - Enemy :
         GameStateIG.Ennemy[0] = WolfIG
 
         # Stage 1 - Win Condition :
@@ -29,7 +29,7 @@ def Level_Fight():
         elif GameStateIG.Fight_Event[0] == False:
             GameStateReset("All")
             
-            pygame.mixer.music.load(Village_Under_Attack)
+            pygame.mixer.music.load(Fierce_Riposte)
             pygame.mixer.music.play(-1)
             
             GameStateIG.Text_Line_Left[1] = "Wow! What was that?"
@@ -63,6 +63,15 @@ def Level_Fight():
 
                 # Fight Background
                 GameStateIG.Background = "Fight"
+
+
+
+    # Stage 2
+    if GameStateIG.Game_Progress == 2:
+
+        # Stage 2 - Enemy :
+        GameStateIG.Ennemy[0] = WolfIG(2)
+        GameStateIG.Ennemy[1] = WolfIG(1)
 
 
 def Win():

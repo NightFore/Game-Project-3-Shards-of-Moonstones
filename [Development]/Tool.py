@@ -36,6 +36,7 @@ class GameState:
         self.Ennemy = ["","",""]
 GameStateIG = GameState("GameState")
 
+
 def GameStateReset(State):
     if State == "Left":
         GameStateIG.Text_Line_Left = ["", "", "", "", "", "", "", ""]
