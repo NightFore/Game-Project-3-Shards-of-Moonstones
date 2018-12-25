@@ -18,8 +18,8 @@ def Quit_Game():
 class GameState:
     def __init__(self, name):
         self.textinput = pygame_textinput.TextInput()
-        self.Text_Line_Left     = ["", "", "", "", "", "", "", ""]
-        self.Text_Line_Right    = ["", "", "", "", "", "", "", ""]
+        self.Text_Line_Left     = ["","","","","","","","",""]
+        self.Text_Line_Right    = ["","","","","","","","",""]
         self.Text_Order         = 1
 
         self.Cutscene = False
@@ -112,5 +112,7 @@ def Text_Input(events):
         pygame.draw.rect(gameDisplay, black, [295, 395, 210, 40])
         pygame.draw.rect(gameDisplay, game_ui_color, [300, 400, 200, 30])
         gameDisplay.blit(GameStateIG.textinput.get_surface(), (305, 405))
+
+
 
 
