@@ -30,6 +30,7 @@ def Title_Screen():
     gameExit = False
     while not gameExit:
         for event in pygame.event.get():
+            GameStateIG.event = event
             if event.type == pygame.QUIT:
                 Quit_Game()
 
@@ -37,9 +38,9 @@ def Title_Screen():
             Text_Display("Shards of Moostones", 400, 150, Text_Title_Screen)
 
             # Commands
-            Button("Start", 150, 425, 100, 50, Green, red, Text_Title_Selection, event, Game_Intro_1)
-            Button("Load",  350, 425, 100, 50, Green, red, Text_Title_Selection, event, Game_Load)
-            Button("Exit",  550, 425, 100, 50, Green, red, Text_Title_Selection, event, Quit_Game)
+            Button("Start", 150, 425, 100, 50, Green, red, Text_Title_Selection, GameStateIG.event, Game_Intro_1)
+            Button("Load",  350, 425, 100, 50, Green, red, Text_Title_Selection, GameStateIG.event, Game_Load)
+            Button("Exit",  550, 425, 100, 50, Green, red, Text_Title_Selection, GameStateIG.event, Quit_Game)
 
             pygame.display.update()
             
@@ -82,6 +83,7 @@ def Game_Intro_1():
                 Game_Intro_2()
 
         for event in events:
+            GameStateIG.event = event
             if event.type == pygame.QUIT:
                 exit()
 
@@ -132,6 +134,7 @@ def Game_Intro_2():
 
 
         for event in events:
+            GameStateIG.event = event
             if event.type == pygame.QUIT:
                 exit()
         
@@ -147,24 +150,30 @@ def Main_Menu():
 
         Game_Text_Event()
         for event in events:
+            GameStateIG.event = event
             if event.type == pygame.QUIT:
                 exit()
-
-
-            # Main_Level
-            if GameStateIG.State == "":
                 
+    # Main_Menu
+            if GameStateIG.State == "":
+                # Background
                 if GameStateIG.Zone_Progress == 1:
                     if GameStateIG.Background == "":
                         gameDisplay.blit(Background_Main_Menu_1, (0,0))
 
+                # Menu
+                Interface_Main_Menu()
+                if GameStateIG.Menu == "Inventory":
+                    Inventory()
+
+                if GameStateIG.Menu == "Shop":
+                    Shop()
                         
-                Interface_Main_Menu(event)
 
 
             # Fight
             if GameStateIG.State == "Level_Fight":
-                Level_Fight(event)
+                Level_Fight()
                 Player_Enemy_Check()
                 Win_Condition()
 
@@ -177,7 +186,7 @@ def Main_Menu():
                 Game_State_Reset("Text")
                 GameStateIG.Background = "Result"
                 gameDisplay.blit(Interface_Results, (0,0))
-                Battle_Result(event)
+                Battle_Result()
 
 
 def Player_Enemy_Check():
@@ -232,5 +241,4 @@ def Win(events):
                 GameStateIG.State = "Result"
 
 
-        
-Title_Screen()
+Game_Intro_2()

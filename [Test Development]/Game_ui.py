@@ -27,15 +27,15 @@ def Game_Text_Event():
 
     
 
-def Game_ui_Fight(event):
+def Game_ui_Fight():
     # Interface
     Text_ui_Screen("Stage : %i" % GameStateIG.Stage_Progress, 15, 5)
     Text_ui_Screen("Turn : %i" % GameStateIG.Stage_Progress, 665, 5) #####################
 
     # Commands
-    Button("Attack",    400-48, 450+2, 100-3, 50-5, Command_Button, red, Text_Title_Selection, event, Attack)
-    Button("Skill",     400-48, 500+2, 100-3, 50-5, Command_Button, red, Text_Title_Selection, event, Skill)
-    Button("Potion",    400-48, 550+2, 100-3, 50-5, Command_Button, red, Text_Title_Selection, event, Potion)
+    Button("Attack",    400-48, 450+2, 100-3, 50-5, Command_Button, red, Text_Title_Selection, GameStateIG.event, Attack)
+    Button("Skill",     400-48, 500+2, 100-3, 50-5, Command_Button, red, Text_Title_Selection, GameStateIG.event, Skill)
+    Button("Potion",    400-48, 550+2, 100-3, 50-5, Command_Button, red, Text_Title_Selection, GameStateIG.event, Potion)
 
 # Player
     # Player 1
@@ -91,9 +91,9 @@ def Game_ui_Fight(event):
 
 
 
-def Battle_Result(event):
+def Battle_Result():
 # End Results
-    Button("Next", 350, 500, 100, 50, Command_Button, red, Text_Title_Selection, event, End_Results)
+    Button("Next", 350, 500, 100, 50, Command_Button, red, Text_Title_Selection, GameStateIG.event, End_Results)
 
 # Total Gain
     GameStateIG.EXP_Gain    = GameStateIG.Enemy[0].EXP_Gain     + GameStateIG.Enemy[1].EXP_Gain     + GameStateIG.Enemy[2].EXP_Gain
@@ -216,11 +216,11 @@ def End_Results():
 
 
         
-def Interface_Main_Menu(event):
-    Button("Status",    10,  530, 100, 40, Command_Button, red, Text_Title_Selection, event, Status)
-    Button("Inventory", 125, 530, 100, 40, Command_Button, red, Text_Title_Selection, event, Inventory)
-    Button("Save",      240, 530, 100, 40, Command_Button, red, Text_Title_Selection, event, Game_Save)
-    Button_Image(367, 517, World_Map_Icon_ic, World_Map_Icon_ac, event, World_Map)
+def Interface_Main_Menu():
+    Button("Status",    10,  530, 100, 40, Command_Button, red, Text_Title_Selection, GameStateIG.event, Status)
+    Button("Inventory", 125, 530, 100, 40, Command_Button, red, Text_Title_Selection, GameStateIG.event, Inventory)
+    Button("Save",      240, 530, 100, 40, Command_Button, red, Text_Title_Selection, GameStateIG.event, Game_Save)
+    Button_Image(367, 517, World_Map_Icon_ic, World_Map_Icon_ac, GameStateIG.event, World_Map)
 
     if GameStateIG.Zone_Progress == 1:
         Progression = (296/6) * (GameStateIG.Stage_Progress-1)
@@ -239,9 +239,18 @@ def Interface_Main_Menu(event):
     # Stage_Progress
 
 
+def Exit_Menu():
+    GameStateIG.Menu = ""
+    
+def Inventory():
+    GameStateIG.Menu = "Inventory"
+    gameDisplay.blit(Interface_Inventory, (0,0))
+    Button_Image(732.50, 32.5, Exit_Button, Exit_Button, GameStateIG.event, Exit_Menu)
 
 def Shop():
-    pass
+    GameStateIG.Menu = "Shop"
+    gameDisplay.blit(Interface_Shop, (0,0))
+    Button_Image(732.50, 32.5, Exit_Button, Exit_Button, GameStateIG.event, Exit_Menu)
 
 def Training():
     pass
@@ -250,9 +259,6 @@ def Next_Level():
     GameStateIG.Game_Progress += 1
 
 def Status():
-    pass
-
-def Inventory():
     pass
 
 def World_Map():

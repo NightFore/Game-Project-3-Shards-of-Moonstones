@@ -312,3 +312,64 @@ def Sound(Action):
         elif Sound == 2:
             Sound_Hit_Damage_2.play()
         Action = ""
+
+
+
+############################
+    self.Turn_Check = [0,0,0,0,0,0]
+    self.Turn_Order =  [GameStateIG.Character[0],GameStateIG.Character[1],GameStateIG.Character[2],
+                        GameStateIG.Character[3],GameStateIG.Character[4],GameStateIG.Character[5]]
+                        #[GameStateIG.Player[1].AP,GameStateIG.Player[2].AP,GameStateIG.Player[3].AP,
+                        #GameStateIG.Enemy[1].AP,GameStateIG.Enemy[2].AP,GameStateIG.Enemy[3].AP]
+
+    self.AP     # Action_Point [0-100]
+
+    self.Character #Player/Enemy
+    self.Type = "Player"
+    self.Type = "Monster"
+
+def Action_Point():
+    Maxi = Maximum(GameStateIG.Turn_Order, "Index")
+    
+    if GameStateIG.Turn_Order[Maxi] < 100:
+        for x in range(6):
+            GameStateIG.Turn_Order[x] += GameStateIG.Character[x].Speed
+
+    elif GameStateIG.Turn_Order[Maxi] >= 100:
+        GameStateIG.Turn_Order[Maxi] -= 100
+        GameStateIG.Turn_Check[Maxi] += 1
+        if all(i>0 for i in GameStateIG.Turn_Check):
+            Turn_Check = [0,0,0,0,0,0]
+            
+        Action(Maxi)
+
+def Action(Maxi):
+    if "Player" in GameStateIG.Character[Maxi]:
+        print("lol")
+
+def Maximum(Liste, Type):
+    Maxi = 0
+    Index  = -1
+    for i in Liste:
+        if i > Maxi:
+            Maxi = i
+            Index += 1
+            
+    if Type == "Index":
+        return Index
+    else:
+        return Maxi
+
+def Minimum(Liste, Type):
+    Mini = 0
+    Index  = -1
+    for i in Liste:
+        if i < Mini:
+            Mini = i
+            Index += 1
+            
+    if Type == "Index":
+        return Index
+    else:
+        return Mini
+

@@ -20,16 +20,19 @@ Background_Introduction = pygame.image.load("Data\Background\Background_Introduc
 Background_House        = pygame.image.load("Data\Background\Background_House.png")
 Background_Main_Menu_1  = pygame.image.load("Data\Background\Background_Main_Menu_1.png")
 
-    # Background 2
+    # Game_ui
 Game_ui_Screen = pygame.image.load("Data\Game_ui\Game_ui_Cutscene.png")
 Game_ui_Screen_Black = pygame.image.load("Data\Game_ui\Game_ui_Screen_Black.png")
-Interface_Fight = pygame.image.load("Data\Game_ui\Interface_Fight.png")
-Interface_Results = pygame.image.load("Data\Game_ui\Interface_Results.png")
 
+Interface_Fight     = pygame.image.load("Data\Game_ui\Interface_Fight.png")
+Interface_Results   = pygame.image.load("Data\Game_ui\Interface_Results.png")
+Interface_Inventory = pygame.image.load("Data\Game_ui\Interface_Inventory.png")
+Interface_Shop      = pygame.image.load("Data\Game_ui\Interface_Shop.png")
 
     # Icon
-World_Map_Icon_ic = pygame.image.load("Data\Icon\World_Map_Icon_ic.png")
-World_Map_Icon_ac = pygame.image.load("Data\Icon\World_Map_Icon_ac.png")
+World_Map_Icon_ic   = pygame.image.load("Data\Icon\World_Map_Icon_ic.png")
+World_Map_Icon_ac   = pygame.image.load("Data\Icon\World_Map_Icon_ac.png")
+Exit_Button         = pygame.image.load("Data\Icon\Exit_Button.png")
 
 Ellesia_Icon    = pygame.image.load("Data\Icon\Ellesia_Icon.png")
 Iris_Icon       = pygame.image.load("Data\Icon\Iris_Icon.png")
