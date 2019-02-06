@@ -61,11 +61,17 @@ class GameState:
         
         self.Player = ["","",""]
         self.Player_Slot    = [False,False,False]
+        self.Player_Death    = [False,False,False]
         
         self.Enemy  = ["","",""]
         self.Enemy_Slot     = [False,False,False]
         self.Enemy_Death    = [False,False,False]
 
+        # Position
+        self.Player_X   = [60,60,60]    # WIP
+        self.Player_Y   = [210,260,310] # WIP
+        self.Enemy_X    = [0,0,0]
+        self.Enemy_Y    = [0,0,0]
 
         self.Stage_Boot = False
         self.Attack_Choice = False
@@ -155,10 +161,11 @@ def Button(msg,x,y,w,h,ic,ac,Text_Type,event,Selection,action=None):
         # Action
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
-                if Selection == "":
-                    action()
-                else:
-                    action(Selection)
+                if action != None:
+                    if Selection == "":
+                        action()
+                    else:
+                        action(Selection)
 
     # Inactive Color
     else:
@@ -169,8 +176,8 @@ def Button(msg,x,y,w,h,ic,ac,Text_Type,event,Selection,action=None):
     gameDisplay.blit(textSurf, textRect)
 
 
-def Button_Image(x, y, Inactive, Active, event, action=None):
-    mouse = pygame.mouse.get_pos()
+def Button_Image(x, y, Inactive, Active, event, Selection, action=None):
+    mouse = pygame.mouse.get_pos()  
     Icon_ic = Inactive.convert()
     Icon_ac = Active.convert()
     Icon_ic_rect = Icon_ic.get_rect(topleft=(x,y))
@@ -178,7 +185,7 @@ def Button_Image(x, y, Inactive, Active, event, action=None):
 
     
     if Icon_ic_rect.collidepoint(mouse):
-        gameDisplay.blit(Icon_ac, Icon_ac_rect)
+        gameDisplay.blit(Active, Icon_ac_rect)
         if event.type == pygame.MOUSEBUTTONDOWN:
             if action != None:
                 if Selection == "":
@@ -186,8 +193,9 @@ def Button_Image(x, y, Inactive, Active, event, action=None):
                 else:
                     action(Selection)
 
+
     else:
-        gameDisplay.blit(Icon_ic, Icon_ic_rect)
+        gameDisplay.blit(Inactive, Icon_ic_rect)
         
 
 def Text_Input(events, f):

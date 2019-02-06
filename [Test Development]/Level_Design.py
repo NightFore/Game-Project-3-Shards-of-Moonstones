@@ -12,6 +12,10 @@ def Level_Fight():
             GameStateIG.Enemy[0] = Wolf("Wolf 1")
             GameStateIG.Enemy[1] = Wolf("Wolf 2")
             GameStateIG.Enemy[2] = Wolf("Wolf 3")
+            
+            GameStateIG.Enemy_X = [650,510,650]
+            GameStateIG.Enemy_Y = [175,260,350]
+            
             GameStateIG.Stage_Boot = True
 
         # Stage 1 - Background

@@ -30,80 +30,40 @@ def Game_Text_Event():
 def Game_ui_Fight():
     # Interface
     Text_ui_Screen("Stage : %i" % GameStateIG.Stage_Progress, 15, 5)
-    Text_ui_Screen("Turn : %i" % GameStateIG.Stage_Progress, 665, 5) #####################
+    Text_ui_Screen("Turn : %i"  % GameStateIG.Turn_Count, 665, 5)
 
     # Commands
-    Button("Attack",    400-48, 450+2, 100-3, 50-5, Command_Button, red, Text_Title_Selection, GameStateIG.event, "", Attack_Choice)
-    Button("Skill",     400-48, 500+2, 100-3, 50-5, Command_Button, red, Text_Title_Selection, GameStateIG.event, "", Skill)
-    Button("Potion",    400-48, 550+2, 100-3, 50-5, Command_Button, red, Text_Title_Selection, GameStateIG.event, "", Potion)
+    Button("Attack", 400-48, 450+2, 100-3, 50-5, Command_Button, red, Text_Title_Selection, GameStateIG.event, "", Attack_Choice)
+    Button("Skill" , 400-48, 500+2, 100-3, 50-5, Command_Button, red, Text_Title_Selection, GameStateIG.event, "", Skill)
+    Button("Potion", 400-48, 550+2, 100-3, 50-5, Command_Button, red, Text_Title_Selection, GameStateIG.event, "", Potion)
 
-# Player
-    # Player 1
-    if GameStateIG.Player_Slot[0] == True:
-        gameDisplay.blit(GameStateIG.Player[0].Img, (60, 210))
-        gameDisplay.blit(GameStateIG.Player[0].Icon, (10,455))
-        Text_Fight("%s" % GameStateIG.Player[0].name, 60, 465)
-        Text_Fight("HP: %i/%i" % (GameStateIG.Player[0].Health, GameStateIG.Player[0].Maxhealth),    170, 465)
-        Text_Fight("MP: %i/%i" % (GameStateIG.Player[0].MP,     GameStateIG.Player[0].MaxMP),        260, 465)
+    for i in range(3):
+    # Player
+        if GameStateIG.Player_Slot[i] == True:
+            if GameStateIG.Player_Death[i] == False:
+                gameDisplay.blit(GameStateIG.Player[i].Img,  (GameStateIG.Player_X[i], GameStateIG.Player_Y[i]))
+            gameDisplay.blit(GameStateIG.Player[i].Icon, (10, 455 + 50*i))
+            Text_Fight("%s" % GameStateIG.Player[i].name, 60, 465 + 50*i)
+            Text_Fight("HP: %i/%i" % (GameStateIG.Player[i].Health,  GameStateIG.Player[i].Maxhealth),    170, 465 + 50*i)
+            Text_Fight("MP: %i/%i" % (GameStateIG.Player[i].MP,      GameStateIG.Player[i].MaxMP),        260, 465 + 50*i)
 
-    # Player 2
-    if GameStateIG.Player_Slot[1] == True:
-        gameDisplay.blit(GameStateIG.Player[1].Img, (60, 260))
-        gameDisplay.blit(GameStateIG.Player[1].Icon, (10,505))
-        Text_Fight("%s" % GameStateIG.Player[1].name, 60, 515)
-        Text_Fight("HP: %i/%i" % (GameStateIG.Player[1].Health, GameStateIG.Player[1].Maxhealth),    170, 515)
-        Text_Fight("MP: %i/%i" % (GameStateIG.Player[1].MP,     GameStateIG.Player[1].MaxMP),        260, 515)
-
-    # Player 3
-    if GameStateIG.Player_Slot[2] == True:
-        gameDisplay.blit(GameStateIG.Player[2].Img, (60, 310))
-        gameDisplay.blit(GameStateIG.Player[2].Icon, (10,555))
-        Text_Fight("%s" % GameStateIG.Player[2].name, 60, 565)
-        Text_Fight("HP: %i/%i" % (GameStateIG.Player[2].Health, GameStateIG.Player[2].Maxhealth),    170, 565)
-        Text_Fight("MP: %i/%i" % (GameStateIG.Player[2].MP,     GameStateIG.Player[2].MaxMP),        260, 565)
-
-
-# Enemy
-    # Enemy 1
-    if GameStateIG.Enemy_Slot[0] == True:
-        if GameStateIG.Enemy_Death[0] == False:
-            gameDisplay.blit(GameStateIG.Enemy[0].Img,  (650, 175))
-        gameDisplay.blit(GameStateIG.Enemy[0].Icon, (750, 455))
-        Text_Fight("%s" % GameStateIG.Enemy[0].name, 660, 465)
-        Text_Fight("HP: %i/%i" % (GameStateIG.Enemy[0].Health,  GameStateIG.Enemy[0].Maxhealth),    550, 465)
-        Text_Fight("MP: %i/%i" % (GameStateIG.Enemy[0].MP,      GameStateIG.Enemy[0].MaxMP),        460, 465)
-
-    # Enemy 2
-    if GameStateIG.Enemy_Slot[1] == True:
-        if GameStateIG.Enemy_Death[1] == False:
-            gameDisplay.blit(GameStateIG.Enemy[1].Img,  (510, 260))
-        gameDisplay.blit(GameStateIG.Enemy[1].Icon, (750, 505))
-        Text_Fight("%s" % GameStateIG.Enemy[1].name, 660, 515)
-        Text_Fight("HP: %i/%i" % (GameStateIG.Enemy[1].Health,  GameStateIG.Enemy[1].Maxhealth),    550, 515)
-        Text_Fight("MP: %i/%i" % (GameStateIG.Enemy[1].MP,      GameStateIG.Enemy[1].MaxMP),        460, 515)
-
-    # Enemy 3
-    if GameStateIG.Enemy_Slot[2] == True:
-        if GameStateIG.Enemy_Death[2] == False:
-            gameDisplay.blit(GameStateIG.Enemy[2].Img,  (650, 350))
-        gameDisplay.blit(GameStateIG.Enemy[2].Icon, (750, 555))
-        Text_Fight("%s" % GameStateIG.Enemy[2].name, 660, 565)
-        Text_Fight("HP: %i/%i" % (GameStateIG.Enemy[2].Health,  GameStateIG.Enemy[2].Maxhealth),    550, 565)
-        Text_Fight("MP: %i/%i" % (GameStateIG.Enemy[2].MP,      GameStateIG.Enemy[2].MaxMP),        460, 565)
-
+    # Enemy   
+        if GameStateIG.Enemy_Slot[i] == True:
+            if GameStateIG.Enemy_Death[i] == False:
+                gameDisplay.blit(GameStateIG.Enemy[i].Img,  (GameStateIG.Enemy_X[i], GameStateIG.Enemy_Y[i]))
+            gameDisplay.blit(GameStateIG.Enemy[i].Icon, (750, 455 + 50*i))
+            Text_Fight("%s" % GameStateIG.Enemy[i].name, 660, 465 + 50*i)
+            Text_Fight("HP: %i/%i" % (GameStateIG.Enemy[i].Health,  GameStateIG.Enemy[i].Maxhealth),    550, 465 + 50*i)
+            Text_Fight("MP: %i/%i" % (GameStateIG.Enemy[i].MP,      GameStateIG.Enemy[i].MaxMP),        460, 465 + 50*i)
+        
 
 def Attack_Choice():
-    Enemy_Rect = [GameStateIG.Enemy[0].Img.get_rect(),GameStateIG.Enemy[1].Img.get_rect(),GameStateIG.Enemy[2].Img.get_rect()]
-    
     GameStateIG.Attack_Choice = True
-    if GameStateIG.Enemy_Slot[0] == True and GameStateIG.Enemy_Death[0] == False:
-        Button("", 650, 175, Enemy_Rect[0][2], Enemy_Rect[0][3], Command_Button, red, Text_Title_Selection, GameStateIG.event, 0, Attack)
-
-    if GameStateIG.Enemy_Slot[1] == True and GameStateIG.Enemy_Death[1] == False:
-        Button("", 510, 260, Enemy_Rect[1][2], Enemy_Rect[1][3], Command_Button, red, Text_Title_Selection, GameStateIG.event, 1, Attack)
-
-    if GameStateIG.Enemy_Slot[2] == True and GameStateIG.Enemy_Death[2] == False:
-        Button("", 650, 350, Enemy_Rect[2][2], Enemy_Rect[2][3], Command_Button, red, Text_Title_Selection, GameStateIG.event, 2, Attack)
+    for i in range(3):
+        if GameStateIG.Enemy_Slot[i] == True and GameStateIG.Enemy_Death[i] == False:
+            Button_Image(GameStateIG.Enemy_X[i], GameStateIG.Enemy_Y[i],
+                         GameStateIG.Enemy[i].Img, World_Map_Icon_ac,       # WIP
+                         GameStateIG.event, i, Attack)
 
 
 def Battle_Result():
@@ -235,7 +195,7 @@ def Interface_Main_Menu():
     Button("Status",    10,  530, 100, 40, Command_Button, red, Text_Title_Selection, GameStateIG.event, "", Status)
     Button("Inventory", 125, 530, 100, 40, Command_Button, red, Text_Title_Selection, GameStateIG.event, "", Inventory)
     Button("Save",      240, 530, 100, 40, Command_Button, red, Text_Title_Selection, GameStateIG.event, "", Game_Save)
-    Button_Image(367, 517, World_Map_Icon_ic, World_Map_Icon_ac, GameStateIG.event, World_Map)
+    Button_Image(367, 517, World_Map_Icon_ic, World_Map_Icon_ac, GameStateIG.event, "", World_Map)
 
     if GameStateIG.Zone_Progress == 1:
         Progression = (296/6) * (GameStateIG.Stage_Progress-1)
