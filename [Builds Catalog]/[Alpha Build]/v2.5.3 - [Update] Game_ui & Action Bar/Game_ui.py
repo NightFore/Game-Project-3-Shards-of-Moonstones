@@ -47,7 +47,7 @@ def Game_ui_Fight():
             Text_Fight("%s" % GameStateIG.Player[i].name, 60, 465 + 50*i)
             Text_Fight("HP: %i/%i" % (GameStateIG.Player[i].Health,  GameStateIG.Player[i].Maxhealth),    155, 465 + 50*i)
             pygame.draw.rect(gameDisplay, Green, (240, 465 + 50*i, GameStateIG.Player[i].Action_Point, 16))
-
+            
     # Enemy   
         if GameStateIG.Enemy_Slot[i] == True:
             if GameStateIG.Enemy_Death[i] == False:
@@ -62,9 +62,10 @@ def Attack_Choice():
     GameStateIG.Attack_Choice = True
     for i in range(3):
         if GameStateIG.Enemy_Slot[i] == True and GameStateIG.Enemy_Death[i] == False:
-            # Selecting Target Rectangle
-            Rect = GameStateIG.Enemy[i].Img.get_rect(topleft=(GameStateIG.Enemy_X[i],GameStateIG.Enemy_Y[i]))
-            Button("", Rect[0]-5, Rect[1]-5, Rect[2]+10, Rect[3]+10, Command_Button, red, Text_Title_Selection, GameStateIG.event, i, Attack)
+            Button_Image(GameStateIG.Enemy_X[i], GameStateIG.Enemy_Y[i],
+                         GameStateIG.Enemy[i].Img, World_Map_Icon_ac,       # WIP
+                         GameStateIG.event, i, Attack)
+
 
 def Battle_Result():
 # End Results

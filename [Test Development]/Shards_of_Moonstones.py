@@ -244,4 +244,5 @@ def Win(events):
                 GameStateIG.State = "Result"
 
 
-Title_Screen()
+GameStateIG.Player = [PlayerIG, IrisIG, GyreiIG]
+Game_Intro_2()
