@@ -58,7 +58,9 @@ class GameState:
         self.Zone_Progress  = 1
         self.Stage_Progress = 0
         self.Turn_Count = 0
-        
+
+        self.Turn_Phase = "Test"
+        self.Character = "Test"
         self.Player = ["","",""]
         self.Player_Slot    = [False,False,False]
         self.Player_Death    = [False,False,False]
@@ -160,7 +162,7 @@ def Button(msg,x,y,w,h,ic,ac,Text_Type,event,Selection,action=None):
             pygame.draw.rect(gameDisplay, ac, Box)
             
         else:
-            pygame.draw.rect(gameDisplay, ac, Box, 5)
+            pygame.draw.rect(gameDisplay, ac, Box, 4)
         
         # Action
         if event.type == pygame.MOUSEBUTTONDOWN:
@@ -176,7 +178,7 @@ def Button(msg,x,y,w,h,ic,ac,Text_Type,event,Selection,action=None):
         pygame.draw.rect(gameDisplay, ic, Box)
 
     else:
-        pygame.draw.rect(gameDisplay, ic, Box, 5)
+        pygame.draw.rect(gameDisplay, ic, Box, 4)
         
     textSurf, textRect = Text_Type(msg, font)
     textRect.center = ((x+(w/2)), (y+(h/2)))
@@ -238,6 +240,6 @@ def Text_Input(events, f):
 # INTRO CHARACTER NAME
     if GameStateIG.State == "Character Name":
         
-        pygame.draw.rect(gameDisplay, black, [295, 395, 210, 40])
-        pygame.draw.rect(gameDisplay, game_ui_color, [300, 400, 200, 30])
+        pygame.draw.rect(gameDisplay, Black, [295, 395, 210, 40])
+        pygame.draw.rect(gameDisplay, Grey, [300, 400, 200, 30])
         gameDisplay.blit(GameStateIG.textinput.get_surface(), (305, 405))

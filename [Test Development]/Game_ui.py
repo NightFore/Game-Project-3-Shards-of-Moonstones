@@ -32,10 +32,15 @@ def Game_ui_Fight():
     Text_ui_Screen("Stage : %i" % GameStateIG.Stage_Progress, 15, 5)
     Text_ui_Screen("Turn : %i"  % GameStateIG.Turn_Count, 665, 5)
 
+    # Turn Phase
+    GameStateIG.Character = PlayerIG
+    GameStateIG.Turn_Phase = PlayerIG
+    Text_Display(GameStateIG.Turn_Phase.name, 400, 150, Text_Title_Screen)
+
     # Commands
-    Button("Attack", 400-48, 450+2, 100-3, 50-5, Command_Button, red, Text_Title_Selection, GameStateIG.event, "", Attack_Choice)
-    Button("Skill" , 400-48, 500+2, 100-3, 50-5, Command_Button, red, Text_Title_Selection, GameStateIG.event, "", Skill)
-    Button("Potion", 400-48, 550+2, 100-3, 50-5, Command_Button, red, Text_Title_Selection, GameStateIG.event, "", Potion)
+    Button("Attack", 400-48, 450+2, 100-3, 50-5, Button_Color, Red, Text_Title_Selection, GameStateIG.event, "", Attack_Choice)
+    Button("Skill" , 400-48, 500+2, 100-3, 50-5, Button_Color, Red, Text_Title_Selection, GameStateIG.event, "", Skill)
+    Button("Potion", 400-48, 550+2, 100-3, 50-5, Button_Color, Red, Text_Title_Selection, GameStateIG.event, "", Potion)
 
     for i in range(3):
     # Player
@@ -64,11 +69,13 @@ def Attack_Choice():
         if GameStateIG.Enemy_Slot[i] == True and GameStateIG.Enemy_Death[i] == False:
             # Selecting Target Rectangle
             Rect = GameStateIG.Enemy[i].Img.get_rect(topleft=(GameStateIG.Enemy_X[i],GameStateIG.Enemy_Y[i]))
-            Button("", Rect[0]-5, Rect[1]-5, Rect[2]+10, Rect[3]+10, Command_Button, red, Text_Title_Selection, GameStateIG.event, i, Attack)
+            Button("", Rect[0]-5, Rect[1]-5, Rect[2]+10, Rect[3]+10, Button_Color, Red, Text_Title_Selection, GameStateIG.event, i, Attack)
+
+
 
 def Battle_Result():
 # End Results
-    Button("Next", 350, 500, 100, 50, Command_Button, red, Text_Title_Selection, GameStateIG.event, "", End_Results)
+    Button("Next", 350, 500, 100, 50, Button_Color, Red, Text_Title_Selection, GameStateIG.event, "", End_Results)
 
 # Total Gain
     GameStateIG.EXP_Gain    = GameStateIG.Enemy[0].EXP_Gain     + GameStateIG.Enemy[1].EXP_Gain     + GameStateIG.Enemy[2].EXP_Gain
@@ -192,9 +199,9 @@ def End_Results():
 
         
 def Interface_Main_Menu():
-    Button("Status",    10,  530, 100, 40, Command_Button, red, Text_Title_Selection, GameStateIG.event, "", Status)
-    Button("Inventory", 125, 530, 100, 40, Command_Button, red, Text_Title_Selection, GameStateIG.event, "", Inventory)
-    Button("Save",      240, 530, 100, 40, Command_Button, red, Text_Title_Selection, GameStateIG.event, "", Game_Save)
+    Button("Status",    10,  530, 100, 40, Button_Color, Red, Text_Title_Selection, GameStateIG.event, "", Status)
+    Button("Inventory", 125, 530, 100, 40, Button_Color, Red, Text_Title_Selection, GameStateIG.event, "", Inventory)
+    Button("Save",      240, 530, 100, 40, Button_Color, Red, Text_Title_Selection, GameStateIG.event, "", Game_Save)
     Button_Image(367, 517, World_Map_Icon_ic, World_Map_Icon_ac, GameStateIG.event, "", World_Map)
 
     if GameStateIG.Zone_Progress == 1:

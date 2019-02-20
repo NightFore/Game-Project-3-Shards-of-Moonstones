@@ -327,6 +327,7 @@ def Action_Point():
     elif GameStateIG.Turn_Order[Maxi] >= 100:
         GameStateIG.Turn_Order[Maxi] -= 100
         GameStateIG.Turn_Check[Maxi] += 1
+        GameStateIG.Turn_Phase = GameStateIG.Character[Maxi]
 
         if all(i>0 for i in GameStateIG.Turn_Check):
             GameStateIG.Turn_Count += 1

@@ -38,9 +38,9 @@ def Title_Screen():
             Text_Display("Shards of Moostones", 400, 150, Text_Title_Screen)
 
             # Commands
-            Button("Start", 150, 425, 100, 50, Green, red, Text_Title_Selection, GameStateIG.event, "", Game_Intro_1)
-            Button("Load",  350, 425, 100, 50, Green, red, Text_Title_Selection, GameStateIG.event, "", Game_Load)
-            Button("Exit",  550, 425, 100, 50, Green, red, Text_Title_Selection, GameStateIG.event, "", Quit_Game)
+            Button("Start", 150, 425, 100, 50, Green, Red, Text_Title_Selection, GameStateIG.event, "", Game_Intro_1)
+            Button("Load",  350, 425, 100, 50, Green, Red, Text_Title_Selection, GameStateIG.event, "", Game_Load)
+            Button("Exit",  550, 425, 100, 50, Green, Red, Text_Title_Selection, GameStateIG.event, "", Quit_Game)
 
             pygame.display.update()
             
@@ -245,4 +245,4 @@ def Win(events):
 
 
 GameStateIG.Player = [PlayerIG, IrisIG, GyreiIG]
-Game_Intro_2()
+Title_Screen()

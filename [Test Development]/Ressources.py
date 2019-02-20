@@ -1,18 +1,23 @@
 import pygame
 pygame.init()
+
+
+
+# Color
+    # Text
+Red     = (200, 0,   0)
+Green   = (60,  212, 122)
+Blue    = (0,   162, 232)
+
+Black   = (0,   0,   0)
+Grey    = (147,169,213)
+
+Button_Color      = (142,207,244)
+
     # Game Size Screen
 display_width = 800
 display_height = 600
 gameDisplay = pygame.display.set_mode((display_width, display_height))
-
-    # Ressources
-black = (0,0,0)
-Green = (60,212,122)
-red = (200,0,0)
-Text_ui_Color = black
-game_ui_color = (147,169,213)
-Introduction_Color = (112,146,190)
-Command_Button = (142,207,244)
     
     # Background
 Title_Screen_Background = pygame.image.load("Data\Background\Title_Screen_Background.png")

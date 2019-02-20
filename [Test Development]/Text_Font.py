@@ -16,25 +16,25 @@ def Text_Title_Screen(msg, font):
     
 def Text_Title_Selection(msg, font):
     font = pygame.font.SysFont(None, 30)
-    textSurface = font.render(msg, True, (black))
+    textSurface = font.render(msg, True, (Black))
     return textSurface, textSurface.get_rect()
 
 def Text_Introduction(msg, font):
     font = pygame.font.SysFont(None, 75)
-    textSurface = font.render(msg, True, (Introduction_Color))
+    textSurface = font.render(msg, True, (Grey))
     return textSurface, textSurface.get_rect()
 
 def Text_ui(msg, x, y):
     font = pygame.font.SysFont("comicsansms", 20)
-    Text_Line = font.render(msg, True, Text_ui_Color)
+    Text_Line = font.render(msg, True, Black)
     gameDisplay.blit(Text_Line,  (x,y))
 
 def Text_ui_Screen(msg, x, y):
     font = pygame.font.SysFont("comicsansms", 25)
-    Text_Line = font.render(msg, True, Text_ui_Color)
+    Text_Line = font.render(msg, True, Black)
     gameDisplay.blit(Text_Line,  (x,y))
 
 def Text_Fight(msg, x, y):
     font = pygame.font.SysFont(None, 25)
-    Text_Line = font.render(msg, True, Text_ui_Color)
+    Text_Line = font.render(msg, True, Black)
     gameDisplay.blit(Text_Line,  (x,y))
