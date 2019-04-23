@@ -175,6 +175,7 @@ def Main_Menu():
             if GameStateIG.State == "Level_Fight":
                 Level_Fight()
                 Player_Enemy_Check()
+                Action_Point()
 
                 if GameStateIG.Attack_Choice == True:
                     Attack_Choice()
@@ -245,4 +246,4 @@ def Win(events):
 
 
 GameStateIG.Player = [PlayerIG, IrisIG, GyreiIG]
-Title_Screen()
+Game_Intro_2()

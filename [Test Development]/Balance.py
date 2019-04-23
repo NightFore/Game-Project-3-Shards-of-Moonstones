@@ -275,12 +275,30 @@ def Attack(Selection):
         if GameStateIG.Enemy[Selection].Health < 0:
             GameStateIG.Enemy[Selection].Health = 0
     print(GameStateIG.Enemy[Selection].Health)
+
+    End_Turn()
+
+
             
 def Skill():
-    pass
+    #Interface
+    #Image
+    #Button_Image
+    #Text
+    #Description
+    End_Turn()
+
                              
+
+def Defend():
+    End_Turn()
+
+
+
 def Potion():
     pass
+
+
 
 
 def Sound(Action):
@@ -318,69 +336,84 @@ def Sound(Action):
 
 
 def Action_Point():
+    print("lol")
     Maxi = Maximum(GameStateIG.Turn_Order, "Index")
-    
-    if GameStateIG.Turn_Order[Maxi] < 100:
-        for x in range(6):
-            GameStateIG.Turn_Order[x] += GameStateIG.Character[x].Speed
+    if GameStateIG.Turn == "":
+        if GameStateIG.Turn_Order[Maxi] < 100:
+            for x in range(6):
+                GameStateIG.Turn_Order[x] += GameStateIG.Character[x].Speed
 
-    elif GameStateIG.Turn_Order[Maxi] >= 100:
-        GameStateIG.Turn_Order[Maxi] -= 100
-        GameStateIG.Turn_Check[Maxi] += 1
-        GameStateIG.Turn_Phase = GameStateIG.Character[Maxi]
+        elif GameStateIG.Turn_Order[Maxi] >= 100:
+            GameStateIG.Turn_Order[Maxi] -= 100
+            GameStateIG.Turn_Check[Maxi] += 1
+            GameStateIG.Turn_Phase = GameStateIG.Character[Maxi]
 
-        if all(i>0 for i in GameStateIG.Turn_Check):
-            GameStateIG.Turn_Count += 1
-            Turn_Check = [0,0,0,0,0,0]
-            
-        Action(Maxi)
-
-def Action(Maxi):
-    if "Player" in GameStateIG.Character[Maxi]:
-        pass
-    elif "Monster" in GameStateIG.Character[Maxi]:
-        pass
-
-def Action_Choice():
-    if None:
-        GameStateIG.State_Fight = "Attack"
-        Attack()
-        
-    if None:
-        GameStateIG.State_Fight = "Skill"
-        Skill()
-        
-    if None:
-        GameStateIG.State_Fight = "Defend"
-        Defend()
-
-
-
-
-
-def Maximum(Liste, Type):
-    Maxi = 0
-    Index  = -1
-    for i in Liste:
-        if i > Maxi:
-            Maxi = i
-            Index += 1
-            
-    if Type == "Index":
-        return Index
-    else:
-        return Maxi
-
-def Minimum(Liste, Type):
-    Mini = 0
-    Index  = -1
-    for i in Liste:
-        if i < Mini:
-            Mini = i
-            Index += 1
-            
-    if Type == "Index":
-        return Index
-    else:
-        return Mini
-
+            if all(i>0 for i in GameStateIG.Turn_Check):
+                GameStateIG.Turn_Count += 1
+                Turn_Check = [0,0,0,0,0,0]
+                
+            Action(Maxi)
+##
+##def Action(Maxi):
+##    GameStateIG.Phase   = GameStateIG.Character[Maxi].Type      # Player / Enemy
+##    GameStateIG.Turn    = GameStateIG.Character[Maxi]           # Game_ui
+##    
+##
+##def Action_Choice():
+##    if None:
+##        GameStateIG.State_Fight = "Attack"
+##        Attack()
+##        
+##    if None:
+##        GameStateIG.State_Fight = "Skill"
+##        Skill()
+##        
+##    if None:
+##        GameStateIG.State_Fight = "Defend"
+##        Defend()
+##
+##
+##
+##def Turn_Order():
+##    GameStateIG.Turn_Order.sort()
+##    for i in range(6):
+##        pass # Image
+##
+##    # Text : ***'s Turn
+##
+##
+##
+##def End_Turn():
+##    GameStateIG.Turn    = ""
+##    GameStateIG.Phase   = ""
+##    Turn_Check()
+##    
+##
+##
+##
+##def Maximum(Liste, Type):
+##    Maxi = 0
+##    Index  = -1
+##    for i in Liste:
+##        if i > Maxi:
+##            Maxi = i
+##            Index += 1
+##            
+##    if Type == "Index":
+##        return Index
+##    else:
+##        return Maxi
+##
+##def Minimum(Liste, Type):
+##    Mini = 0
+##    Index  = -1
+##    for i in Liste:
+##        if i < Mini:
+##            Mini = i
+##            Index += 1
+##            
+##    if Type == "Index":
+##        return Index
+##    else:
+##        return Mini
+##

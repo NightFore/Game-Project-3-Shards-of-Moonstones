@@ -9,6 +9,10 @@ def Level_Fight():
 
         # Stage 1 - Enemy
         if GameStateIG.Stage_Boot == False:
+            GameStateIG.Action_Point    = [100,100,100,0,0,0]
+            GameStateIG.Turn_Check      = [0,0,0,1,1,1]
+            GameStateIG.Turn = ""
+            
             GameStateIG.Enemy[0] = Wolf("Wolf 1")
             GameStateIG.Enemy[1] = Wolf("Wolf 2")
             GameStateIG.Enemy[2] = Wolf("Wolf 3")

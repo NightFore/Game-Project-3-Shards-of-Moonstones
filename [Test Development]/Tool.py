@@ -81,6 +81,11 @@ class GameState:
         
         self.Experience_Gain = 0
         self.Gold_Gain = 0
+
+
+        # Test
+        self.Turn_Order = ["","","","","",""]
+        
 GameStateIG = GameState("GameState")
 
 
