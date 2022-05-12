@@ -1,0 +1,4 @@
+[R]Wake up young child...
+[L]Huh...? Where am I?
+[R]Tell me your name.
+[R]And maybe I can answer you.

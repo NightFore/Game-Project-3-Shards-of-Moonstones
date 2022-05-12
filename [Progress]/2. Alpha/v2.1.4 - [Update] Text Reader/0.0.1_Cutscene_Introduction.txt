@@ -1,0 +1,14 @@
+[L]My name is % PlayerIG.name.
+[R]I see... You're %s...
+[R]So my new Summon name is %s
+[L]Wh... What do you mean?"
+[R]It means that I will look after you.
+[R]But you will also have to obey me.
+[R]I hope you won't disappoint me.
+[R]I will send you off to accomplish
+[R]an important mission.
+[L]So what is that mission?"
+[R]You don't have to know about it.
+[R]You will understand when you will
+[R]have to do when you confront her.
+[R]You're going to fall asleep now.
