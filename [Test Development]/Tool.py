@@ -231,8 +231,8 @@ def Text_Input(events, f):
 # INTRO CHARACTER NAME
     if GameStateIG.State == "Character Name":
         
-        pygame.draw.rect(gameDisplay, black, [295, 395, 210, 40])
-        pygame.draw.rect(gameDisplay, game_ui_color, [300, 400, 200, 30])
+        pygame.draw.rect(gameDisplay, Black, [295, 395, 210, 40])
+        pygame.draw.rect(gameDisplay, Button_Color, [300, 400, 200, 30])
         gameDisplay.blit(GameStateIG.textinput.get_surface(), (305, 405))
 
 
